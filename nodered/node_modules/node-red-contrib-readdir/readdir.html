@@ -1,0 +1,54 @@
+<script type="text/javascript">
+    RED.nodes.registerType('readdir',{
+        category: 'input',
+        color: '#d4a870',
+        defaults: {
+            name: {value:""},
+            dir: {value:"", required: true},
+            as: {value:"multi"},
+            recursive:{value:false},
+            outproperty: {value:"payload"}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"readdir";
+        },
+        oneditprepare: function() {
+            $("#node-input-outproperty").typedInput({default:'msg',types:['msg']});
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="readdir">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-dir"><i class="fa fa-sitemap"></i> Directory</label>
+        <input type="text" id="node-input-dir" placeholder="/var/www/log">
+    </div>
+     <div class="form-row">
+        <label for="node-input-as">&nbsp;</label>
+        <select id="node-input-as" style="width:70%">
+            <option value="multi">as multiple messages, one for each element</option>
+            <option value="single">as a single message containing an array</option>
+        </select>
+    </div>
+     <div class="form-row">
+        <label for="node-input-outproperty">&nbsp;</label>
+        <span style="padding-left:8px; padding-right:2px; vertical-align:-1px;">in</span>
+        <input type="text" id="node-input-outproperty" style="width:64%">
+    </div>
+     <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-recursive" style="display:inline-block; width:auto; vertical-align:top;">
+        <label for="node-input-recursive" style="width:70%;"><span> Recursive </span></label>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="readdir">
+    <p>Listing files in directory</p>
+</script>
