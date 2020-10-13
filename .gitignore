@@ -1,5 +1,10 @@
+nodered/index.txt
+nodered/serial
+nodered/crlnumber
 *.crt
 *.pem
 *.key
 *.p12
 *.csr
+*.txt
+*.old
