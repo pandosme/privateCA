@@ -1,6 +1,6 @@
-nodered/index.txt
-nodered/serial
-nodered/crlnumber
+/nodered/index.txt
+/nodered/serial
+/nodered/crlnumber
 *.crt
 *.pem
 *.key
