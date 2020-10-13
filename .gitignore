@@ -1,6 +1,9 @@
-/nodered/index.txt
+index.txt
 /nodered/serial
 /nodered/crlnumber
+context/
+.config.json
+.config.json.backup
 *.crt
 *.pem
 *.key
