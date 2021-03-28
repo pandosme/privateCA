@@ -13,4 +13,5 @@ services:
       - ./nodered:/data
     ports:
       - '8443:1880'
- 
+      - '9999:9999'
+
