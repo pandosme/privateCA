@@ -3,6 +3,12 @@ A docker-compose repository that provides a private Certificate Authority (CA) u
 
 The main purpose is to provide a CA with an API for other servers to automate certificat signing.  The dashboard can be used for manually signing CSR (Certificate Signing Request). The Dashboard also provides a list of all issued certificates and also a tab for inspecting certificate information.
 
+## Prerequisite 
+A Linux computer (Rasberry PI will do) with the following installed
+- Docker
+- Docker-compose
+- Git
+
 ## Installation
 1. git clone repository
 2. cd privateCA
