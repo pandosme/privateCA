@@ -13,7 +13,7 @@ Local private Certificate Authority (CA) using standard OpenSSL with a Node-Red 
   "passphrase":""
 }
 ``` 
-6. Set the Org value to some name and set a passphrase that will protect the CA private key.  Leaving passphrase empty will set nor passphrase.  Having a passphrase or not depends on how critical the CA is and how well you protect the server.
+6. Set the Org value to some name and set a passphrase that will protect the CA private key.  Leaving passphrase empty will create a key with no passphrase.  Having a passphrase or not depends on how critical the CA is and how well you protect the server.  For sandbox testing you can leave the passphrase empty (for convinence).
 7. Click Deploy.
 8. Click inject node for "Set your Data Here".  This will generate CA private key and CA certificate.  Every time you click it will generate (overwrite) new key and certificate.  The key will have 4096 bits RSA and valid for 10 years.
 9. Open Browser and goto http://address:8443.  You are good to go...
@@ -58,11 +58,8 @@ Post body:
 {
  "cn":"required",
  "o":"required",
- "passphrase":"if needed",
+ "passphrase":"The CA passphrase if needed",
  "type":"client or server",
  "days": 123,
 }
 ```
-
-
-
