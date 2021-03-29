@@ -6,10 +6,17 @@ Local private Certificate Authority (CA) using standard OpenSSL with a Node-Red 
 2. Edit docker-compose.yaml if you need to chage the default port 8443 to something else
 3. docker-compose up -d
 4. Open Browser and goto http://address:8443/admin
-5. On tap "Initialize CA", double click to edit "Set your Data Here" and edit msg.payload {"org":"Acme Inc","passphrase":""}
+5. On tap "Initialize CA", double click to edit "Set your Data Here" and edit msg.payload
+```
+{
+  "org":"Acme Inc",
+  "passphrase":""
+}
+``` 
 6. Set the Org value to some name and set a passphrase that will protect the CA private key.  Leaving passphrase empty will set nor passphrase.  Having a passphrase or not depends on how critical the CA is and how well you protect the server.
 7. Click Deploy.
-8. Open Browser and goto http://address:8443
+8. Click inject node for "Set your Data Here".  This will generate CA private key and CA certificate.  Every time you click it will generate (overwrite) new key and certificate.  The key will have 4096 bits RSA and valid for 10 years.
+9. Open Browser and goto http://address:8443.  You are good to go...
 
 ## API
 
