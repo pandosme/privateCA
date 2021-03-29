@@ -40,7 +40,7 @@ Returns a ZIP file with a generated signed certificate and assiciated private ke
 ### POST /cert
 Same as GET /cert but returns a JSON payload {"cert":"...PEM data..","key":"...PEM data..."}
 Post body:
-´´´
+```
 {
  "cn":"required",
  "o":"required",
@@ -48,7 +48,7 @@ Post body:
  "type":"client or server",
  "days": 123,
 }
-´´´
+```
 
 
 
