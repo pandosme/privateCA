@@ -1,12 +1,15 @@
 # privateCA
-Local private Certificate Authority (CA) using standard OpenSSL with a Node-Red user interface wrapper.  The main purpose is to provide API for other servers to automate certificat signing but the dashboard can be used to sign CSR (Certificate Signing Request) [PEM].
+A docker-compose repository that provides a private Certificate Authority (CA) using OpenSSL with a Node-Red wrapper interface.
+
+The main purpose is to provide a CA with an API for other servers to automate certificat signing.  The dashboard can be used for manually signing CSR (Certificate Signing Request). The Dashboard also provides listing all issued certificates and inspecting a certificate to view the information.
 
 ## Installation
 1. git clone repository
-2. Edit docker-compose.yaml if you need to chage the default port 8443 to something else
-3. docker-compose up -d
-4. Open Browser and goto http://address:8443/admin
-5. On tap "Initialize CA", double click to edit "Set your Data Here" and edit msg.payload
+2. cd privateCA
+3. nano docker-compose.yaml if you need to chage the default port 8443 to something else
+4. docker-compose up -d
+5. Open Browser and goto http://address:8443/admin
+6. On tab "Initialize CA", double click to edit "Set your Data Here" and edit msg.payload
 ```
 {
   "org":"Acme Inc",
@@ -14,8 +17,8 @@ Local private Certificate Authority (CA) using standard OpenSSL with a Node-Red 
 }
 ``` 
 6. Set the Org value to some name and set a passphrase that will protect the CA private key.  Leaving passphrase empty will create a key with no passphrase.  Having a passphrase or not depends on how critical the CA is and how well you protect the server.  For sandbox testing you can leave the passphrase empty (for convinence).
-7. Click Deploy.
-8. Click inject node for "Set your Data Here".  This will generate CA private key and CA certificate.  Every time you click it will generate (overwrite) new key and certificate.  The key will have 4096 bits RSA and valid for 10 years.
+7. Click Deploy
+8. Click inject node for "Set your Data Here".  This will generate CA private key and CA certificate.  Note that every time you click that inject it will generate  a new key (overwrite) and certificate.  The key will have 4096 bits RSA and valid for 10 years.
 9. Open Browser and goto http://address:8443.  You are good to go...
 
 ## API
