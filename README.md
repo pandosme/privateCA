@@ -33,14 +33,17 @@ Returns CA Certificate as text PEM format
 Returns a JSON array of issued certificates
 
 ### GET /certificates/id?filename=some_name
-id defines the specific certificates seen in GET /certificates.  If filename is omitted, returns a certificates as PEM text. If filename is set, returns a PEM-file with filename
+Gets a previous signed certificate. id identifies the specific certificate listed in GET /certificates.  If filename is omitted, returns a certificates as PEM text. If filename is set, returns a PEM-file with filename
 
 ### POST /sign
 Signs a CSR (Certificate Signing Request) and responds the signed certificate in PEM format.
-Post body: CSR in PEM format or as a file (form upload)
+
+Post body: CSR in text/PEM format or as a file (form upload)
 
 ### GET /cert?cn=some.server.com&o=Organization&passphrase=pass&type=server&days=100
-Returns a ZIP file with a generated signed certificate and assiciated private key
+A quick way to generates and sign a certificate with and a private key.  Private keys are nevere stored in the server.  If you loose the key, generate a new certificate.
+
+Returns a ZIP file with a generated signed certificate and the private key
 * cn (Common Name) is required
 * o (Organization) is required
 * passphrase is required if CA was initialized with a passphrase
@@ -48,7 +51,7 @@ Returns a ZIP file with a generated signed certificate and assiciated private ke
 * days (optional) Set how many days certificate is valid. Default = 365
 
 ### POST /cert
-Same as GET /cert but returns a JSON payload
+Same as GET /cert but returns a JSON payload (for automation)
 ```
 {
   "cert":"...PEM data..",
