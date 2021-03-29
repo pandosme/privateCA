@@ -38,7 +38,14 @@ Returns a ZIP file with a generated signed certificate and assiciated private ke
 * days (optional) Set how many days certificate is valid. Default = 365
 
 ### POST /cert
-Same as GET /cert but returns a JSON payload {"cert":"...PEM data..","key":"...PEM data..."}
+Same as GET /cert but returns a JSON payload
+```
+{
+  "cert":"...PEM data..",
+  "key":"...PEM data..."
+}
+```
+
 Post body:
 ```
 {
