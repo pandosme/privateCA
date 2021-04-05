@@ -15,7 +15,7 @@ A Linux computer (Rasberry PI will do) with the following installed
 3. nano docker-compose.yaml if you need to chage the default port 8443 to something else
 4. docker-compose up -d
 5. Open Browser and goto http://address:8443/admin
-6. On tab "Initialize CA", double click to edit "Set your Data Here" and edit msg.payload
+6. On tab "CA", edit "Double click and set your CA settings here" and edit msg.payload JSON structure to match your CA settings.
 ```
 {
   "org":"Acme Inc",
