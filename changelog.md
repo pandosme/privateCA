@@ -7,4 +7,5 @@ The openssl directory structure is removed from reposiroty and created when init
 - Cleanup
 - Extended API
 
-## 1.x Development versions
+## 1.x
+Initial commit.  Development version.
