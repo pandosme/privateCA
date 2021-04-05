@@ -1,7 +1,7 @@
 # privateCA
 A docker-compose repository that provides a private Certificate Authority (CA) using OpenSSL with a Node-Red wrapper interface.
 
-The main purpose is to provide a CA with an API for other servers to automate certificat signing.  The dashboard can be used for manually signing CSR (Certificate Signing Request). The Dashboard also provides a list of all issued certificates and also a tab for inspecting certificate information.
+The main purpose is to provide a CA with an API for other servers to automate certificate generation or CSR signing.  The dashboard can be used for manually signing CSR (Certificate Signing Request). The Dashboard also provides a list of all issued certificates and also a tab for inspecting certificate information.
 
 ## Prerequisite 
 A Linux computer (Rasberry PI will do) with the following installed
