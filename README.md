@@ -44,7 +44,17 @@ Gets a previous signed certificate. id identifies the specific certificate liste
 ### POST /sign
 Signs a CSR (Certificate Signing Request) and responds the signed certificate in PEM format.
 
-Post body: CSR in text/PEM format or as a file (form upload)
+Post body:
+```
+{
+  "csr":"-----BEGIN CERTIFICATE REQUEST-----...",
+  "passphrase":"If required",
+  "type":"server || client",
+  "days":123
+}
+```
+Response:
+Signed certificate in PEM format
 
 ### GET /cert?cn=some.server.com&o=Organization&passphrase=pass&type=server&days=100
 A quick way to generates and sign a certificate with and a private key.  Private keys are nevere stored in the server.  If you loose the key, generate a new certificate.
