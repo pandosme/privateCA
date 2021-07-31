@@ -2,7 +2,7 @@ version: '3'
 services:
   nodered:
     image: nodered/node-red
-    container_name: privateCA
+    container_name: ca.juhlin.me
     restart: always
     user: '0'    
     volumes:
