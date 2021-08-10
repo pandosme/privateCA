@@ -61,6 +61,10 @@ module.exports = function(RED) {
             }
         }
 
+        node.on("input", function(msg) {
+            node.topi = msg.topic;
+        });
+
         var done = ui.add({
             node: node,
             tab: tab,
@@ -79,6 +83,7 @@ module.exports = function(RED) {
                 officon: config.officon,
                 oncolor: config.oncolor,
                 offcolor: config.offcolor,
+                animate: config.animate?"flip-icon":"",
                 width: config.width || group.config.width || 6,
                 height: config.height || 1
             },
@@ -120,7 +125,8 @@ module.exports = function(RED) {
                 return value;
             },
             beforeSend: function (msg) {
-                msg.topic = config.topic || msg.topic;
+                var t = RED.util.evaluateNodeProperty(config.topic,config.topicType || "str",node,msg) || node.topi;
+                if (t) { msg.topic = t; }
             }
         });
 
@@ -132,6 +138,7 @@ module.exports = function(RED) {
                 node.status({fill:col, shape:shp, text:txt});
             });
         }
+
         node.on("close", done);
     }
     RED.nodes.registerType("ui_switch", SwitchNode);

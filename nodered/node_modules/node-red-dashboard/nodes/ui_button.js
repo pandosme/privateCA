@@ -30,6 +30,10 @@ module.exports = function(RED) {
             payload = payload || node.id;
         }
 
+        node.on("input", function(msg) {
+            node.topi = RED.util.evaluateNodeProperty(config.topic,config.topicType || "str",node,msg);
+        });
+
         var done = ui.add({
             node: node,
             tab: tab,
@@ -51,7 +55,10 @@ module.exports = function(RED) {
                 height: config.height || 1
             },
             beforeSend: function (msg,m2) {
-                msg.topic = config.topic || msg.topic;
+                var t = RED.util.evaluateNodeProperty(config.topic,config.topicType || "str",node,msg)
+                if (typeof t === "undefined") { t = node.topi; }
+                if (t !== undefined) { msg.topic = t; }
+                if (((config.topicType || "str") === "str") && t == "") { delete msg.topic; }
                 if (m2 !== undefined) { msg.event = m2.event; }
             },
             convertBack: function (value) {
