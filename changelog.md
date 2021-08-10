@@ -1,3 +1,7 @@
+## 2.4.0 
+- General cleanup
+- Include CA certificate in ZIP file when requesting client or server certificate
+
 ## 2.2.0 
 Requesting server and client certs in dashboard is moved from its own page to buttons on the home page. 
 
