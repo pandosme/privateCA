@@ -15,13 +15,7 @@ A Linux computer (Rasberry PI will do) with the following installed
 3. nano docker-compose.yaml if you need to chage the default port 8443 to something else
 4. docker-compose up -d
 5. Open Browser and goto http://address:8443/admin
-6. On tab "Initialize CA", double click to edit "Set your Data Here" and edit msg.payload
-```
-{
-  "org":"Acme Inc",
-  "passphrase":""
-}
-``` 
+6. On tab "Initialize CA", double click to edit "Set your Data Here".
 6. Set the Org value to some name and set a passphrase that will protect the CA private key.  Leaving passphrase empty will create a key with no passphrase.  Having a passphrase or not depends on how critical the CA is and how well you protect the server.  For sandbox testing you can leave the passphrase empty (for convinence).
 7. Click Deploy
 8. Click inject node for "Set your Data Here".  This will generate CA private key and CA certificate.  Note that every time you click that inject it will generate  a new key (overwrite) and certificate.  The key will have 4096 bits RSA and valid for 10 years.
