@@ -5,7 +5,6 @@
     "private": true,
     "dependencies": {
         "node-red-contrib-fs-ops": "~1.6.0",
-        "node-red-contrib-readdir": "~1.0.1",
         "node-red-contrib-zip": "~1.1.0",
         "node-red-dashboard": "~2.30.0",
         "node-red-node-ui-table": "~0.3.11"
