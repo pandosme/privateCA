@@ -25,3 +25,8 @@ A Linux computer (Rasberry PI will do) with the following installed
 
 It is recommeded to add authetication in the settings.js file.
 
+# Changelog
+## 3.0  Breaking changes
+- Refactory to simplify logic
+- Updated user interface
+- Changed API
