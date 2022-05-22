@@ -4,8 +4,10 @@ services:
     image: nodered/node-red
     container_name: privateCA
     restart: always
-    user: '0'    
+    user: '0'
+    environment:
+      - TZ=Europe/Stockholm
     volumes:
-      - ./nodered:/data
+      - ./:/data
     ports:
       - '8443:1880'
