@@ -17,9 +17,11 @@ A Linux computer (Rasberry PI will do) with the following installed
 3. ```npm install```
 3. ```nano docker-compose.yaml``` if you need to chage the default port 8443 to something else
 4. ```docker-compose up -d```
-5. Open Browser and goto http://address:8443/admin
+5. Open Browser and goto http://address:8443
 6. On tab "CA initialize", double click to edit "Set CA settings here".
 7. Click Deploy
 8. Click the inject node "Initialize CA".
 9. Open Browser and goto http://address:8443/ui.  You are good to go...
+
+It is recommeded to add authetication in the settings.js file.
 
