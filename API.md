@@ -9,7 +9,7 @@
   "caPassphrase": "The secret passphrase",
   "type": "server" or "client" [default="server"]
   "keylength": number of bits [default=2048],
-  "day": number day befofe expiration [default=365]
+  "days": number day befofe expiration [default=365]
 }
 ```
 ### Response
