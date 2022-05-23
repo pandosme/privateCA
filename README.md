@@ -26,7 +26,29 @@ A Linux computer (Rasberry PI will do) with the following installed
 It is recommeded to add authetication in the settings.js file.
 
 # Changelog
-## 3.0  Breaking changes
-- Refactory to simplify logic
-- Updated user interface
-- Changed API
+
+## 3.1.0
+- Fixed browser connection timeout when user clicks download links
+- Added SubjectAltName in CSR when requesting a certificate.  Required by some browsers.
+
+## 3.0.0  BREAKING CHANGES
+- Refactory to simplify interfaces and logic
+
+## 2.4.0 
+- General cleanup
+- Include CA certificate in ZIP file when requesting client or server certificate
+
+## 2.2.0 
+Requesting server and client certs in dashboard is moved from its own page to buttons on the home page. 
+
+## 2.1.0 Breaking changes
+The openssl directory structure is removed from reposiroty and created when initializing the CA
+- General cleanup
+- Simplifying flows tab
+
+## 2.0.0
+- Cleanup
+- Extended API
+
+## 1.x Development versions
+

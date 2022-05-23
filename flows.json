@@ -414,7 +414,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": 0.1,
+        "onceDelay": "2",
         "topic": "",
         "payload": "",
         "payloadType": "date",
@@ -620,8 +620,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1190,
-        "y": 140,
+        "x": 1250,
+        "y": 180,
         "wires": []
     },
     {
@@ -728,11 +728,12 @@
             "795f790c55d98ed1",
             "47dc6265633db7d4"
         ],
-        "x": 295,
+        "x": 275,
         "y": 560,
         "wires": [
             [
-                "3dae490771600d82"
+                "3dae490771600d82",
+                "d13d6fbe74b9835b"
             ]
         ]
     },
@@ -742,7 +743,7 @@
         "z": "b8bbfb03.fd1c08",
         "name": "Refresh CA",
         "info": "",
-        "x": 190,
+        "x": 170,
         "y": 560,
         "wires": []
     },
@@ -768,9 +769,9 @@
         "order": 3,
         "width": "11",
         "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:white\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.payload.filename && msg.payload.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.payload.filename);\n            $(\"#download_\"+scope.$id).html(msg.payload.filename+\".crt\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
+        "format": "<h3>Download and install CA certificate  <a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n      if(!msg || !msg.payload )\n        return;\n    if( msg.payload.filename && msg.payload.filename.length ) {\n        $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.payload.filename);\n        $(\"#download_\"+scope.$id).html(msg.payload.filename+\".crt\");\n    } else {\n        $(\"#download_\"+scope.$id).attr(\"\");\n        $(\"#download_\"+scope.$id).html(\"\");\n    }\n  });\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
@@ -803,26 +804,9 @@
         "y": 480,
         "wires": [
             [
-                "ad06ce04e2bbc9e0",
-                "8ebdc7d83beb6fda"
+                "ad06ce04e2bbc9e0"
             ]
         ]
-    },
-    {
-        "id": "8ebdc7d83beb6fda",
-        "type": "debug",
-        "z": "b8bbfb03.fd1c08",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 700,
-        "y": 520,
-        "wires": []
     },
     {
         "id": "80cfd47868544682",
@@ -929,7 +913,7 @@
         "order": 3,
         "width": "11",
         "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:white\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.payload.filename);\n            $(\"#download_\"+scope.$id).html(msg.payload.filename+\".crt\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
+        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.payload.filename);\n            $(\"#download_\"+scope.$id).html(msg.payload.filename+\".crt\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -1794,10 +1778,10 @@
         "order": 9,
         "width": "6",
         "height": "1",
-        "format": "<h3><a id=\"{{'download_p12_'+$id}}\" href=\"\" style=\"color:white\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.payload && msg.payload.filename && msg.payload.filename.length ) {\n            $(\"#download_p12_\"+scope.$id).attr(\"href\", \"/file/p12?name=\"+msg.payload.filename);\n            $(\"#download_p12_\"+scope.$id).html(msg.payload.filename+\".p12\");\n        } else {\n            $(\"#download_p12_\"+scope.$id).attr(\"\");\n            $(\"#download_p12_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
+        "format": "<h3><a id=\"{{'download_p12_'+$id}}\" href=\"\" style=\"color:white\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.payload && msg.payload.filename && msg.payload.filename.length ) {\n            $(\"#download_p12_\"+scope.$id).attr(\"href\", \"/file/p12?name=\"+msg.payload.filename);\n            $(\"#download_p12_\"+scope.$id).html(msg.payload.filename+\".p12\");\n        } else {\n            $(\"#download_p12_\"+scope.$id).attr(\"\");\n            $(\"#download_p12_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
         "x": 1020,
@@ -1979,10 +1963,10 @@
         "order": 6,
         "width": "6",
         "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:white\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/key?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".key\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
+        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/key?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".key\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
         "x": 700,
@@ -2000,10 +1984,10 @@
         "order": 5,
         "width": "6",
         "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:white\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".crt\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
+        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".crt\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
         "x": 700,
@@ -2103,10 +2087,10 @@
         "order": 4,
         "width": "6",
         "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:white\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/zip?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".zip\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
+        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/zip?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".zip\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
         "x": 680,
@@ -2356,7 +2340,7 @@
         "type": "function",
         "z": "aa7daa87.f23d38",
         "name": "Headers",
-        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"application/x-compressed\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".zip\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
+        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Expires'] = '0';\nmsg.headers['Cache-Control'] = 'must-revalidate, post-check=0, pre-check=0';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"application/x-compressed\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".zip\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2409,7 +2393,7 @@
         "type": "function",
         "z": "aa7daa87.f23d38",
         "name": "Headers",
-        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"text/plain\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".crt\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
+        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"application/octet-stream\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".crt\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2494,7 +2478,7 @@
         "type": "function",
         "z": "aa7daa87.f23d38",
         "name": "Headers",
-        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"text/plain\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".key\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
+        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"application/octet-stream\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".key\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3014,8 +2998,7 @@
         "y": 480,
         "wires": [
             [
-                "fc9c6ba4fc59e10c",
-                "0df0dfe254a4dd59"
+                "fc9c6ba4fc59e10c"
             ]
         ]
     },
@@ -3034,8 +3017,7 @@
         "y": 480,
         "wires": [
             [
-                "87906495d90514ce",
-                "6227624897fa9d43"
+                "87906495d90514ce"
             ]
         ]
     },
@@ -3301,38 +3283,6 @@
         "wires": []
     },
     {
-        "id": "0df0dfe254a4dd59",
-        "type": "debug",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "6227624897fa9d43",
-        "type": "debug",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 720,
-        "y": 600,
-        "wires": []
-    },
-    {
         "id": "861f223fa69f58f6",
         "type": "function",
         "z": "e325035d97b5ddfc",
@@ -3369,7 +3319,8 @@
             [],
             [],
             [
-                "3d1f0e61911f4a19"
+                "3d1f0e61911f4a19",
+                "94a88e6ba05bd772"
             ]
         ]
     },
@@ -3474,7 +3425,8 @@
             [],
             [],
             [
-                "2843b954d59d0f2f"
+                "2843b954d59d0f2f",
+                "94a88e6ba05bd772"
             ]
         ]
     },
@@ -3482,18 +3434,19 @@
         "id": "ac27542e4e121f23",
         "type": "function",
         "z": "e325035d97b5ddfc",
-        "name": "Generate client cert",
-        "func": "msg.payload = ' req -new -config /data/openssl/openssl.conf -extensions client_cert'\nmsg.payload += ' -key ' + \"/data/certificates/\" + msg.request.filename + \".key\";\nmsg.payload += ' -out /data/certificates/' + msg.request.filename + \".csr\";\nmsg.payload += ' -subj \"/CN=' + msg.request.cn + '\"';\nreturn msg;",
+        "name": "Generate CSR",
+        "func": "msg.payload = ' req -new -config /data/openssl/openssl.conf -extensions client_cert'\nmsg.payload += ' -key ' + \"/data/certificates/\" + msg.request.filename + \".key\";\nmsg.payload += ' -out /data/certificates/' + msg.request.filename + \".csr\";\nmsg.payload += ' -subj \"/CN=' + msg.request.cn + '\" ';\nmsg.payload += ' -addext \"subjectAltName= DNS:' + msg.request.cn +'\"';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
+        "x": 720,
         "y": 940,
         "wires": [
             [
-                "ec3e94f7e1f9ce45"
+                "ec3e94f7e1f9ce45",
+                "2392e7781425b1df"
             ]
         ]
     },
@@ -3598,7 +3551,8 @@
             [],
             [],
             [
-                "3645eee305c3c8da"
+                "3645eee305c3c8da",
+                "94a88e6ba05bd772"
             ]
         ]
     },
@@ -4180,8 +4134,7 @@
         "y": 420,
         "wires": [
             [
-                "866954f7be0a9abd",
-                "c8aea68c6a261e10"
+                "866954f7be0a9abd"
             ]
         ]
     },
@@ -5287,7 +5240,7 @@
         "wires": []
     },
     {
-        "id": "c8aea68c6a261e10",
+        "id": "94a88e6ba05bd772",
         "type": "debug",
         "z": "e325035d97b5ddfc",
         "name": "",
@@ -5298,8 +5251,24 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 540,
-        "y": 360,
+        "x": 1610,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "2392e7781425b1df",
+        "type": "debug",
+        "z": "e325035d97b5ddfc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 1060,
         "wires": []
     }
 ]
