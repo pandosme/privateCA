@@ -2637,9 +2637,7 @@
             "dca79403686a6a21",
             "837c7195b5257faf",
             "b2970804b72572ee",
-            "a8366702055cb8c6",
-            "87906495d90514ce",
-            "81aa19c732a8df62"
+            "a8366702055cb8c6"
         ],
         "uncaught": false,
         "x": 620,
@@ -2986,118 +2984,6 @@
         ]
     },
     {
-        "id": "e83be5a10044cb6f",
-        "type": "http in",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "url": "/pem",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 180,
-        "y": 600,
-        "wires": [
-            [
-                "fc9c6ba4fc59e10c"
-            ]
-        ]
-    },
-    {
-        "id": "fc9c6ba4fc59e10c",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "CRT file",
-        "func": "msg.name = msg.payload.name;\nmsg.pemCRT = null;\nmsg.pemKEY = null;\nmsg.filename = \"/data/certificates/\" + msg.name + \".crt\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 600,
-        "wires": [
-            [
-                "87906495d90514ce"
-            ]
-        ]
-    },
-    {
-        "id": "87906495d90514ce",
-        "type": "file in",
-        "z": "aa7daa87.f23d38",
-        "name": "PEM cert",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 620,
-        "y": 600,
-        "wires": [
-            [
-                "cfc68979358082ea"
-            ]
-        ]
-    },
-    {
-        "id": "cfc68979358082ea",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Key file",
-        "func": "msg.pemCRT = msg.payload;\nmsg.filename = \"/data/certificates/\" + msg.name + \".key\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 780,
-        "y": 600,
-        "wires": [
-            [
-                "81aa19c732a8df62"
-            ]
-        ]
-    },
-    {
-        "id": "81aa19c732a8df62",
-        "type": "file in",
-        "z": "aa7daa87.f23d38",
-        "name": "PEM Key",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 940,
-        "y": 600,
-        "wires": [
-            [
-                "263e0f8dabc9c27a"
-            ]
-        ]
-    },
-    {
-        "id": "263e0f8dabc9c27a",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "response",
-        "func": "msg.payload = {\n    cert: msg.pemCRT,\n    key: msg.payload\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1120,
-        "y": 600,
-        "wires": [
-            [
-                "15bc68dff8517f1b"
-            ]
-        ]
-    },
-    {
         "id": "d5c1d763bb6a4779",
         "type": "http in",
         "z": "aa7daa87.f23d38",
@@ -3256,17 +3142,6 @@
         "headers": {},
         "x": 1130,
         "y": 660,
-        "wires": []
-    },
-    {
-        "id": "15bc68dff8517f1b",
-        "type": "http response",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 1270,
-        "y": 600,
         "wires": []
     },
     {
