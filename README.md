@@ -1,7 +1,7 @@
 # privateCA
-A docker-compose repository that provides a private Certificate Authority (CA) using OpenSSL with a Node-Red wrapper interface.
+A CA (Certificate Authority) built around OpenSSL with a Node-Red wrapper interface.
 
-The main purpose is to provide a CA with an API for other servers to automate certificat signing.  The dashboard can be used for manually signing CSR (Certificate Signing Request). The Dashboard also provides a list of all issued certificates and also a tab for inspecting certificate information.
+The purpose for this CA is to provide a CA for educational and demonstration purposes.  You may run it in a less critical production system if you take additional hardening precautions such as reduced exposure, adding authentication to Node-RED and use a strong passphrase for the CA.  After initializing the CA certificate and private key, the server provides a dashboard and API for signing CSR and requesting certificates (server or client) with private key or as P12.
 
 ## Prerequisite 
 A Linux computer (Rasberry PI will do) with the following installed
@@ -21,7 +21,8 @@ A Linux computer (Rasberry PI will do) with the following installed
 6. On tab "CA initialize", double click to edit "Set CA settings here".
 7. Click Deploy
 8. Click the inject node "Initialize CA".
-9. Open Browser and goto http://address:8443/ui.  You are good to go...
+9. Open Browser and goto http://address:8443/ui.  
+You should be good to go...
 
 It is recommeded to add authetication in the settings.js file.
 
