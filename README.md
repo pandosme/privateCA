@@ -4,12 +4,7 @@ A CA (Certificate Authority) built around OpenSSL with a Node-Red wrapper interf
 The purpose for privateCA is to provide a CA for educational and demonstration purposes.  You may run it in a less critical production system if you take additional hardening precautions such as reduced exposure, adding authentication to Node-RED and use a strong passphrase for the CA.  After initializing the CA certificate and private key, the server provides a dashboard and API for signing CSR and requesting certificates (server or client) with private key or as P12.
 
 ## Prerequisite 
-A Linux computer (Rasberry PI will do) with the following installed
-- npm
-- Docker
-- Docker-compose
-- Git
-
+A Node-RED instance with projects enabled, preferably running in a docker container.
 
 ## Installation
 1. Create a Node-RED docker instance with project settings enabled
