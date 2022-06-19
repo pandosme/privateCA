@@ -969,8 +969,7 @@
             [
                 "74a74c5756e9b43b",
                 "bc3e500749b33c85",
-                "80cfd47868544682",
-                "969a300a82ed58fe"
+                "80cfd47868544682"
             ]
         ]
     },
@@ -1013,8 +1012,7 @@
         "wires": [
             [
                 "0462932fed3354b0",
-                "8bd405572b4bee21",
-                "be0ccb21d7057b1f"
+                "8bd405572b4bee21"
             ]
         ]
     },
@@ -1084,38 +1082,6 @@
         ],
         "x": 1515,
         "y": 280,
-        "wires": []
-    },
-    {
-        "id": "be0ccb21d7057b1f",
-        "type": "debug",
-        "z": "030d24a2a9defa6b",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1570,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "969a300a82ed58fe",
-        "type": "debug",
-        "z": "030d24a2a9defa6b",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 690,
-        "y": 260,
         "wires": []
     },
     {
@@ -1273,19 +1239,18 @@
         "id": "088935c97dffe71f",
         "type": "function",
         "z": "02e5f353e21060b3",
-        "name": "",
+        "name": "Remove files after download",
         "func": "msg.payload = \"/data/certificates/\" + msg.certificate.filename + \".*\";\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
+        "x": 720,
         "y": 420,
         "wires": [
             [
-                "6f145d956d1df5ad",
-                "028e9b211f73f2d6"
+                "6f145d956d1df5ad"
             ]
         ]
     },
@@ -1301,18 +1266,12 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 830,
+        "x": 950,
         "y": 420,
         "wires": [
-            [
-                "a5545c4b6f8e1dd0"
-            ],
-            [
-                "a5545c4b6f8e1dd0"
-            ],
-            [
-                "a5545c4b6f8e1dd0"
-            ]
+            [],
+            [],
+            []
         ]
     },
     {
@@ -1548,38 +1507,6 @@
         ]
     },
     {
-        "id": "028e9b211f73f2d6",
-        "type": "debug",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "a5545c4b6f8e1dd0",
-        "type": "debug",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1040,
-        "y": 400,
-        "wires": []
-    },
-    {
         "id": "9e5ccfb2.19c098",
         "type": "file in",
         "z": "aa7daa87.f23d38",
@@ -1591,7 +1518,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 640,
-        "y": 560,
+        "y": 320,
         "wires": [
             [
                 "f75c5d31.f8f4d8"
@@ -1606,7 +1533,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1040,
-        "y": 760,
+        "y": 520,
         "wires": []
     },
     {
@@ -1621,7 +1548,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 600,
+        "y": 360,
         "wires": [
             [
                 "be23ef2b.be374"
@@ -1640,7 +1567,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 640,
-        "y": 600,
+        "y": 360,
         "wires": [
             [
                 "01959333d3ac14b8"
@@ -1659,7 +1586,7 @@
         "finalize": "",
         "libs": [],
         "x": 450,
-        "y": 760,
+        "y": 520,
         "wires": [
             [
                 "0ca9e5934ba74b82"
@@ -1678,7 +1605,7 @@
         "finalize": "",
         "libs": [],
         "x": 860,
-        "y": 760,
+        "y": 520,
         "wires": [
             [
                 "2f77af65.904188"
@@ -1695,7 +1622,7 @@
         "compressionlevel": 6,
         "outasstring": false,
         "x": 650,
-        "y": 760,
+        "y": 520,
         "wires": [
             [
                 "996fbb93.cbfa2"
@@ -1715,8 +1642,8 @@
             "a8366702055cb8c6"
         ],
         "uncaught": false,
-        "x": 620,
-        "y": 400,
+        "x": 640,
+        "y": 280,
         "wires": [
             [
                 "b29ad9c7dcee495e"
@@ -1742,8 +1669,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 810,
-        "y": 400,
+        "x": 830,
+        "y": 280,
         "wires": [
             [
                 "944c78ae8c668516"
@@ -1757,8 +1684,8 @@
         "name": "",
         "statusCode": "400",
         "headers": {},
-        "x": 1050,
-        "y": 400,
+        "x": 1070,
+        "y": 280,
         "wires": []
     },
     {
@@ -1850,7 +1777,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 190,
-        "y": 560,
+        "y": 320,
         "wires": [
             [
                 "349f056f76c247f0"
@@ -1869,7 +1796,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 560,
+        "y": 320,
         "wires": [
             [
                 "9e5ccfb2.19c098"
@@ -1888,7 +1815,7 @@
         "finalize": "",
         "libs": [],
         "x": 450,
-        "y": 720,
+        "y": 480,
         "wires": [
             [
                 "a8366702055cb8c6"
@@ -1907,75 +1834,10 @@
         "encoding": "none",
         "allProps": false,
         "x": 640,
-        "y": 720,
+        "y": 480,
         "wires": [
             [
                 "1ae7f992.0fe28e"
-            ]
-        ]
-    },
-    {
-        "id": "bd4d2c80f76b811f",
-        "type": "http in",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "url": "/inspect",
-        "method": "post",
-        "upload": true,
-        "swaggerDoc": "",
-        "x": 220,
-        "y": 980,
-        "wires": [
-            [
-                "c2ef2cd9a705dd7f"
-            ]
-        ]
-    },
-    {
-        "id": "89ce88ad92aee23f",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Check Input",
-        "func": "if( msg.payload.search('-----BEGIN CERTIFICATE-----') < 0 )  {\n    msg.statusCode = 400;\n    msg.payload = \"Invalid certificate\";\n    node.send([msg,null]);\n    return;\n}\n\nif( msg.payload.search('-----END CERTIFICATE-----') < 0 )  {\n    msg.statusCode = 400;\n    msg.payload = \"Invalid certificate\";\n    node.send([msg,null]);\n    return;\n}\n\nmsg.uid = new Date().getTime();\nmsg.filename = '/data/files/' + msg.uid + \".crt\"\nnode.send([null,msg]);\n",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 600,
-        "y": 980,
-        "wires": [
-            [
-                "efe3730d39452993"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "efe3730d39452993",
-        "type": "http response",
-        "z": "aa7daa87.f23d38",
-        "name": "Response error",
-        "statusCode": "",
-        "headers": {},
-        "x": 870,
-        "y": 980,
-        "wires": []
-    },
-    {
-        "id": "c2ef2cd9a705dd7f",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Convert if file",
-        "func": "if( msg.req.files && msg.req.files.length > 0 )\n    msg.payload = msg.req.files[0].buffer.toString();\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 400,
-        "y": 980,
-        "wires": [
-            [
-                "89ce88ad92aee23f"
             ]
         ]
     },
@@ -2004,7 +1866,7 @@
         "finalize": "",
         "libs": [],
         "x": 450,
-        "y": 640,
+        "y": 400,
         "wires": [
             [
                 "c5b63c69d3a30d19"
@@ -2023,7 +1885,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 640,
-        "y": 640,
+        "y": 400,
         "wires": [
             [
                 "61342447e9787235"
@@ -2042,7 +1904,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 680,
+        "y": 440,
         "wires": [
             [
                 "e0a4701abd6ac1d5"
@@ -2061,7 +1923,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 640,
-        "y": 680,
+        "y": 440,
         "wires": [
             [
                 "27e0db35ce463430"
