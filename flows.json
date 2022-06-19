@@ -23,14 +23,6 @@
         "env": []
     },
     {
-        "id": "20e4ce8802f8b88f",
-        "type": "tab",
-        "label": "Inspect Certificate",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "aa7daa87.f23d38",
         "type": "tab",
         "label": "API",
@@ -188,7 +180,7 @@
         "tab": "28dd68a.bd8d198",
         "order": 3,
         "disp": true,
-        "width": "26",
+        "width": "13",
         "collapse": false,
         "className": ""
     },
@@ -208,7 +200,7 @@
         "tab": "b1277c2f80bd8d86",
         "order": 1,
         "disp": true,
-        "width": "19",
+        "width": "6",
         "collapse": false,
         "className": ""
     },
@@ -403,8 +395,7 @@
         "wires": [
             [
                 "073e98e6ad13ed06",
-                "3dae490771600d82",
-                "d13d6fbe74b9835b"
+                "3dae490771600d82"
             ]
         ]
     },
@@ -712,8 +703,7 @@
         "y": 560,
         "wires": [
             [
-                "3dae490771600d82",
-                "d13d6fbe74b9835b"
+                "3dae490771600d82"
             ]
         ]
     },
@@ -741,50 +731,30 @@
         "wires": []
     },
     {
-        "id": "ad06ce04e2bbc9e0",
-        "type": "ui_template",
-        "z": "b8bbfb03.fd1c08",
-        "group": "a4dc3656.5518a",
-        "name": "Link",
-        "order": 3,
-        "width": "11",
-        "height": "1",
-        "format": "<h3>Download and install CA certificate  <a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n      if(!msg || !msg.payload )\n        return;\n    if( msg.payload.filename && msg.payload.filename.length ) {\n        $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.payload.filename);\n        $(\"#download_\"+scope.$id).html(msg.payload.filename+\".crt\");\n    } else {\n        $(\"#download_\"+scope.$id).attr(\"\");\n        $(\"#download_\"+scope.$id).html(\"\");\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 670,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d13d6fbe74b9835b",
-        "type": "change",
+        "id": "c8e54e1b07d30b47",
+        "type": "ui_button",
         "z": "b8bbfb03.fd1c08",
         "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "certificates[0]",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 440,
-        "y": 480,
+        "group": "a4dc3656.5518a",
+        "order": 2,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "label": "Refresh",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 220,
+        "y": 520,
         "wires": [
             [
-                "ad06ce04e2bbc9e0"
+                "3dae490771600d82"
             ]
         ]
     },
@@ -797,7 +767,7 @@
         "order": 4,
         "width": "13",
         "height": "10",
-        "format": "<h3>Paste certificate PEM here</h3>\n<textarea id=\"csrpem\" rows=\"30\" cols=\"80\" style=\"font-family:monospace\">{{msg.payload}}</textarea>\n\n<script>\nthis.scope.action = function() {\n    return $(\"#csrpem\").val();\n}\n</script>\n<md-button ng-click=\"send({payload:action()})\">\n    Sign certificate\n</md-button>\n",
+        "format": "<h3>Paste certificate PEM here</h3>\n<textarea id=\"csrpem\" rows=\"30\" cols=\"80\" style=\"font-family:monospace\">{{msg.payload}}</textarea>\n\n<script>\nthis.scope.action = function() {\n    var csr = $(\"#csrpem\").val();\n    $(\"#csrpem\").val(\"\");\n    return csr;\n}\n</script>\n<md-button ng-click=\"send({payload:action()})\">\n    Sign certificate\n</md-button>\n",
         "storeOutMessages": true,
         "fwdInMessages": false,
         "resendOnRefresh": true,
@@ -838,27 +808,6 @@
         ]
     },
     {
-        "id": "dc7175f0687e9c50",
-        "type": "ui_template",
-        "z": "030d24a2a9defa6b",
-        "group": "788715bd.13bec4",
-        "name": "Signed certificate",
-        "order": 5,
-        "width": "13",
-        "height": "9",
-        "format": "<h3>Signed certificate</h3>\n<textarea rows=\"30\" cols=\"80\" style=\"font-family:monospace\">{{msg.payload}}</textarea>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 710,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "bc3e500749b33c85",
         "type": "ui_text_input",
         "z": "030d24a2a9defa6b",
@@ -882,27 +831,6 @@
             [
                 "0b98c0b99d85efe7"
             ]
-        ]
-    },
-    {
-        "id": "e609efd3b7cd9421",
-        "type": "ui_template",
-        "z": "030d24a2a9defa6b",
-        "group": "788715bd.13bec4",
-        "name": "Link",
-        "order": 3,
-        "width": "11",
-        "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.payload.filename);\n            $(\"#download_\"+scope.$id).html(msg.payload.filename+\".crt\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 670,
-        "y": 320,
-        "wires": [
-            []
         ]
     },
     {
@@ -993,7 +921,7 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1090,
+        "x": 1230,
         "y": 140,
         "wires": [
             []
@@ -1012,74 +940,7 @@
         "y": 240,
         "wires": [
             [
-                "719846d5b3e7ddf3",
-                "e609efd3b7cd9421"
-            ]
-        ]
-    },
-    {
-        "id": "719846d5b3e7ddf3",
-        "type": "function",
-        "z": "030d24a2a9defa6b",
-        "name": "Read file",
-        "func": "msg.filename = \"/data/certificates/\" + msg.payload.filename + \".crt\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1060,
-        "y": 240,
-        "wires": [
-            [
-                "80900ead41b8cd05"
-            ]
-        ]
-    },
-    {
-        "id": "80900ead41b8cd05",
-        "type": "file in",
-        "z": "030d24a2a9defa6b",
-        "name": "",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 1240,
-        "y": 240,
-        "wires": [
-            [
-                "dc7175f0687e9c50"
-            ]
-        ]
-    },
-    {
-        "id": "1ac6f6002f108968",
-        "type": "ui_button",
-        "z": "030d24a2a9defa6b",
-        "name": "Clear All",
-        "group": "788715bd.13bec4",
-        "order": 5,
-        "width": "5",
-        "height": "1",
-        "passthru": false,
-        "label": "Clear All",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 300,
-        "y": 80,
-        "wires": [
-            [
-                "f7258493343a2e1f"
+                "100afe83d81393b8"
             ]
         ]
     },
@@ -1109,10 +970,153 @@
                 "74a74c5756e9b43b",
                 "bc3e500749b33c85",
                 "80cfd47868544682",
-                "dc7175f0687e9c50",
-                "e609efd3b7cd9421"
+                "969a300a82ed58fe"
             ]
         ]
+    },
+    {
+        "id": "100afe83d81393b8",
+        "type": "function",
+        "z": "030d24a2a9defa6b",
+        "name": "",
+        "func": "msg.certificate = msg.payload;\n\nmsg.topic = \"Save certificate\";\nmsg.payload = '<a href=\"/file/crt?name=' + msg.certificate.filename +'\" style=\"color:Yellow\" target=\"_blank\">' + msg.certificate.filename + '.zip</a>';\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 240,
+        "wires": [
+            [
+                "279b1d75e74921bf"
+            ]
+        ]
+    },
+    {
+        "id": "279b1d75e74921bf",
+        "type": "ui_toast",
+        "z": "030d24a2a9defa6b",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Close",
+        "cancel": "",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1330,
+        "y": 240,
+        "wires": [
+            [
+                "0462932fed3354b0",
+                "8bd405572b4bee21",
+                "be0ccb21d7057b1f"
+            ]
+        ]
+    },
+    {
+        "id": "0462932fed3354b0",
+        "type": "function",
+        "z": "030d24a2a9defa6b",
+        "name": "",
+        "func": "msg.payload = \"/data/certificates/\" + msg.certificate.filename + \".*\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1560,
+        "y": 240,
+        "wires": [
+            [
+                "5431e0211c1e5b7b"
+            ]
+        ]
+    },
+    {
+        "id": "5431e0211c1e5b7b",
+        "type": "exec",
+        "z": "030d24a2a9defa6b",
+        "command": "rm ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1730,
+        "y": 240,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "75aeed0c3791dc46",
+        "type": "link in",
+        "z": "030d24a2a9defa6b",
+        "name": "",
+        "links": [
+            "8bd405572b4bee21"
+        ],
+        "x": 325,
+        "y": 80,
+        "wires": [
+            [
+                "f7258493343a2e1f"
+            ]
+        ]
+    },
+    {
+        "id": "8bd405572b4bee21",
+        "type": "link out",
+        "z": "030d24a2a9defa6b",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "75aeed0c3791dc46"
+        ],
+        "x": 1515,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "be0ccb21d7057b1f",
+        "type": "debug",
+        "z": "030d24a2a9defa6b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1570,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "969a300a82ed58fe",
+        "type": "debug",
+        "z": "030d24a2a9defa6b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "28a9bb7ae65e0842",
@@ -1122,8 +1126,8 @@
         "label": "",
         "group": "37ea4f556fa5e416",
         "order": 3,
-        "width": "6",
-        "height": "19",
+        "width": "0",
+        "height": "0",
         "options": [
             {
                 "label": "Common Name",
@@ -1155,7 +1159,6 @@
         "y": 140,
         "wires": [
             [
-                "2132fb2796be62ee",
                 "cb9ec4e20c4adb20"
             ]
         ]
@@ -1164,7 +1167,7 @@
         "id": "74f8250482174037",
         "type": "switch",
         "z": "02e5f353e21060b3",
-        "name": "",
+        "name": "OK?",
         "property": "statusCode",
         "propertyType": "msg",
         "rules": [
@@ -1180,7 +1183,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 750,
+        "x": 850,
         "y": 140,
         "wires": [
             [
@@ -1210,8 +1213,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 950,
-        "y": 120,
+        "x": 1100,
+        "y": 140,
         "wires": [
             [
                 "00732ba4a1193d0e"
@@ -1233,302 +1236,10 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1160,
-        "y": 120,
+        "x": 1320,
+        "y": 140,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "515893d1bcbf345d",
-        "type": "function",
-        "z": "02e5f353e21060b3",
-        "name": "certificate",
-        "func": "msg.filename = \"/data/certificates/\" + msg.payload.filename + \".crt\";\nmsg.name = msg.payload.filename;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 340,
-        "y": 340,
-        "wires": [
-            [
-                "3cfa3d1cc63c9a19"
-            ]
-        ]
-    },
-    {
-        "id": "f58dfe5044edbae8",
-        "type": "function",
-        "z": "02e5f353e21060b3",
-        "name": "key",
-        "func": "msg.filename = \"/data/certificates/\" + msg.payload.filename + \".key\";\nmsg.name = msg.payload.filename;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 420,
-        "wires": [
-            [
-                "18c80cbabf1178a7"
-            ]
-        ]
-    },
-    {
-        "id": "3cfa3d1cc63c9a19",
-        "type": "file in",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 500,
-        "y": 340,
-        "wires": [
-            [
-                "ec9a6248d9413d87",
-                "ba30033abe04802c",
-                "3eceb158c231d77f"
-            ]
-        ]
-    },
-    {
-        "id": "18c80cbabf1178a7",
-        "type": "file in",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 500,
-        "y": 420,
-        "wires": [
-            [
-                "13709fc54983f781",
-                "d5c88f634780e59a"
-            ]
-        ]
-    },
-    {
-        "id": "ec9a6248d9413d87",
-        "type": "ui_template",
-        "z": "02e5f353e21060b3",
-        "group": "37ea4f556fa5e416",
-        "name": "Certificate PEM",
-        "order": 2,
-        "width": "13",
-        "height": "10",
-        "format": "<h3>Certificate pem</h3>\n<textarea id=\"cert\" rows=\"30\" cols=\"80\" style=\"font-family:monospace\">{{msg.payload}}</textarea>\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 700,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "13709fc54983f781",
-        "type": "ui_template",
-        "z": "02e5f353e21060b3",
-        "group": "37ea4f556fa5e416",
-        "name": "Key PEM",
-        "order": 11,
-        "width": "13",
-        "height": "10",
-        "format": "<h3>Private key PEM</h3>\n<textarea rows=\"30\" cols=\"80\" style=\"font-family:monospace\">{{msg.payload}}</textarea>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 680,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ca04cd3c03b69bb3",
-        "type": "ui_button",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "group": "37ea4f556fa5e416",
-        "order": 10,
-        "width": "6",
-        "height": "1",
-        "passthru": false,
-        "label": "Clear after download",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 180,
-        "y": 820,
-        "wires": [
-            [
-                "a74546f253797101",
-                "088935c97dffe71f",
-                "4a520ad16a8b9da3"
-            ]
-        ]
-    },
-    {
-        "id": "8d588f975b94ca3b",
-        "type": "link in",
-        "z": "02e5f353e21060b3",
-        "name": "Clear PEM",
-        "links": [
-            "2132fb2796be62ee",
-            "a74546f253797101",
-            "fd84af3c6fea23d6"
-        ],
-        "x": 195,
-        "y": 300,
-        "wires": [
-            [
-                "c257f43cee90bcdb"
-            ]
-        ]
-    },
-    {
-        "id": "b1606101e2e52257",
-        "type": "comment",
-        "z": "02e5f353e21060b3",
-        "name": "Clear PEM",
-        "info": "",
-        "x": 120,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "c257f43cee90bcdb",
-        "type": "change",
-        "z": "02e5f353e21060b3",
-        "name": "Reset",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 510,
-        "y": 300,
-        "wires": [
-            [
-                "13709fc54983f781",
-                "ec9a6248d9413d87",
-                "d5c88f634780e59a",
-                "3eceb158c231d77f",
-                "ba30033abe04802c"
-            ]
-        ]
-    },
-    {
-        "id": "2132fb2796be62ee",
-        "type": "link out",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "8d588f975b94ca3b",
-            "59f66dfd8d610c35",
-            "40fd8a91b1f8472a",
-            "99f4896c2485dde3"
-        ],
-        "x": 255,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "a74546f253797101",
-        "type": "link out",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "8d588f975b94ca3b",
-            "59f66dfd8d610c35",
-            "28eddf97fa12c81c",
-            "99f4896c2485dde3"
-        ],
-        "x": 355,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "75095d7916fea88a",
-        "type": "ui_text_input",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "label": "P12 passphrase",
-        "tooltip": "",
-        "group": "37ea4f556fa5e416",
-        "order": 7,
-        "width": "6",
-        "height": "1",
-        "passthru": true,
-        "mode": "password",
-        "delay": 300,
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 580,
-        "y": 920,
-        "wires": [
-            [
-                "511c76b4b9ac6240"
-            ]
-        ]
-    },
-    {
-        "id": "fb970634cafd7e5e",
-        "type": "ui_button",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "group": "37ea4f556fa5e416",
-        "order": 8,
-        "width": "6",
-        "height": "1",
-        "passthru": false,
-        "label": "Generate P12",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 160,
-        "y": 620,
-        "wires": [
-            [
-                "5f51ac6f137e7f4e"
-            ]
         ]
     },
     {
@@ -1540,7 +1251,7 @@
             {
                 "t": "set",
                 "p": "certificate",
-                "pt": "flow",
+                "pt": "msg",
                 "to": "payload",
                 "tot": "msg"
             }
@@ -1550,11 +1261,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 960,
-        "y": 160,
+        "x": 230,
+        "y": 340,
         "wires": [
             [
-                "e5f505bf8e33a634"
+                "3f609ed54c0792e3"
             ]
         ]
     },
@@ -1563,17 +1274,18 @@
         "type": "function",
         "z": "02e5f353e21060b3",
         "name": "",
-        "func": "var certificate = flow.get(\"certificate\");\nif(!certificate)\n    return;\nmsg.payload = \"/data/certificates/\" + certificate.filename + \".*\";\nflow.set(\"certifcate\");\nflow.set(\"passphrase\");\n\nreturn msg;",
+        "func": "msg.payload = \"/data/certificates/\" + msg.certificate.filename + \".*\";\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 860,
+        "x": 660,
+        "y": 420,
         "wires": [
             [
-                "6f145d956d1df5ad"
+                "6f145d956d1df5ad",
+                "028e9b211f73f2d6"
             ]
         ]
     },
@@ -1589,335 +1301,17 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 560,
-        "y": 860,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "5f51ac6f137e7f4e",
-        "type": "function",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "func": "var certificate = flow.get(\"certificate\");\nif(!certificate) {\n    msg.error = {\n        message: \"No certificate available for P12\"\n    }\n    return msg;\n}\n\nvar passphrase = flow.get(\"passphrase\");\nif(!passphrase) {\n    msg.error = {\n        message: \"You need to set a passphrase\"\n    }\n    return msg;\n}\n\nif(passphrase.length < 8) {\n    msg.error = {\n        message: \"Passphrase needs to be at least 8 characters\"\n    }\n    return msg;\n}\n\nif(passphrase.indexOf(' ') >= 0) {\n    msg.error = {\n        message: \"Passphrase cannot have space character\"\n    }\n    return msg;\n}\n\n\nmsg.payload = {\n    filename: certificate.filename,\n    passphrase: passphrase\n}\n    \nmsg.request = msg.payload;\n    \nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 350,
-        "y": 620,
+        "x": 830,
+        "y": 420,
         "wires": [
             [
-                "cda025c9636ee9a6"
-            ]
-        ]
-    },
-    {
-        "id": "cda025c9636ee9a6",
-        "type": "switch",
-        "z": "02e5f353e21060b3",
-        "name": "Error?",
-        "property": "error",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nempty"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 510,
-        "y": 620,
-        "wires": [
-            [
-                "456c8ebab75c8578"
+                "a5545c4b6f8e1dd0"
             ],
             [
-                "d8cfca03076cf4de"
-            ]
-        ]
-    },
-    {
-        "id": "456c8ebab75c8578",
-        "type": "change",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Error",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "error.message",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 700,
-        "y": 600,
-        "wires": [
-            [
-                "acb88ce28e841c48"
-            ]
-        ]
-    },
-    {
-        "id": "acb88ce28e841c48",
-        "type": "ui_toast",
-        "z": "02e5f353e21060b3",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "red",
-        "sendall": false,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 930,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "511c76b4b9ac6240",
-        "type": "change",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "passphrase",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1000,
-        "y": 920,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4a520ad16a8b9da3",
-        "type": "change",
-        "z": "02e5f353e21060b3",
-        "name": "Reset",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 390,
-        "y": 920,
-        "wires": [
-            [
-                "75095d7916fea88a"
-            ]
-        ]
-    },
-    {
-        "id": "c54132d911835ba1",
-        "type": "ui_template",
-        "z": "02e5f353e21060b3",
-        "group": "37ea4f556fa5e416",
-        "name": "P12 Links",
-        "order": 9,
-        "width": "6",
-        "height": "1",
-        "format": "<h3><a id=\"{{'download_p12_'+$id}}\" href=\"\" style=\"color:white\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.payload && msg.payload.p12 && msg.payload.p12.length ) {\n            $(\"#download_p12_\"+scope.$id).attr(\"href\", \"/file/p12?name=\"+msg.payload.p12);\n            $(\"#download_p12_\"+scope.$id).html(msg.payload.p12+\".p12\");\n        } else {\n            $(\"#download_p12_\"+scope.$id).attr(\"\");\n            $(\"#download_p12_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 1020,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d8cfca03076cf4de",
-        "type": "link call",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "links": [
-            "b4add4d73596ca1c"
-        ],
-        "timeout": "30",
-        "x": 680,
-        "y": 640,
-        "wires": [
-            [
-                "b32c4c64a5136aa7",
-                "4a826f42dca8da35"
-            ]
-        ]
-    },
-    {
-        "id": "b32c4c64a5136aa7",
-        "type": "switch",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "property": "error",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nempty"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 850,
-        "y": 640,
-        "wires": [
-            [
-                "ac0b4e85ffcbdb83"
+                "a5545c4b6f8e1dd0"
             ],
             [
-                "c54132d911835ba1",
-                "e85ba1c5076a5d6c"
-            ]
-        ]
-    },
-    {
-        "id": "81b111deb3bc91ad",
-        "type": "comment",
-        "z": "02e5f353e21060b3",
-        "name": "Reset",
-        "info": "",
-        "x": 330,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "b9867f6a9c9542ad",
-        "type": "link in",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "links": [
-            "e5f505bf8e33a634"
-        ],
-        "x": 195,
-        "y": 340,
-        "wires": [
-            [
-                "f58dfe5044edbae8",
-                "515893d1bcbf345d"
-            ]
-        ]
-    },
-    {
-        "id": "e5f505bf8e33a634",
-        "type": "link out",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "974eb9e41b997ef0",
-            "b9867f6a9c9542ad"
-        ],
-        "x": 1105,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "40fd8a91b1f8472a",
-        "type": "link in",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "links": [
-            "fd84af3c6fea23d6",
-            "2132fb2796be62ee"
-        ],
-        "x": 205,
-        "y": 920,
-        "wires": [
-            [
-                "4a520ad16a8b9da3"
-            ]
-        ]
-    },
-    {
-        "id": "8dc91d93303590dc",
-        "type": "change",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "null",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 820,
-        "y": 680,
-        "wires": [
-            [
-                "c54132d911835ba1"
-            ]
-        ]
-    },
-    {
-        "id": "99f4896c2485dde3",
-        "type": "link in",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "links": [
-            "fd84af3c6fea23d6",
-            "2132fb2796be62ee",
-            "a74546f253797101"
-        ],
-        "x": 215,
-        "y": 680,
-        "wires": [
-            [
-                "8dc91d93303590dc"
+                "a5545c4b6f8e1dd0"
             ]
         ]
     },
@@ -1930,54 +1324,12 @@
             "48f79bb14d6fd4d2"
         ],
         "timeout": "30",
-        "x": 520,
+        "x": 570,
         "y": 140,
         "wires": [
             [
                 "74f8250482174037"
             ]
-        ]
-    },
-    {
-        "id": "d5c88f634780e59a",
-        "type": "ui_template",
-        "z": "02e5f353e21060b3",
-        "group": "37ea4f556fa5e416",
-        "name": "Link certificate",
-        "order": 6,
-        "width": "6",
-        "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/key?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".key\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 700,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ba30033abe04802c",
-        "type": "ui_template",
-        "z": "02e5f353e21060b3",
-        "group": "37ea4f556fa5e416",
-        "name": "Link certificate",
-        "order": 5,
-        "width": "6",
-        "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/crt?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".crt\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 700,
-        "y": 380,
-        "wires": [
-            []
         ]
     },
     {
@@ -2054,7 +1406,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 370,
         "y": 140,
         "wires": [
             [
@@ -2063,78 +1415,140 @@
         ]
     },
     {
-        "id": "3eceb158c231d77f",
-        "type": "ui_template",
+        "id": "3f609ed54c0792e3",
+        "type": "function",
         "z": "02e5f353e21060b3",
-        "group": "37ea4f556fa5e416",
-        "name": "Link zip",
-        "order": 4,
-        "width": "6",
-        "height": "1",
-        "format": "<h3><a id=\"{{'download_'+$id}}\" href=\"\" style=\"color:Yellow\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.filename && msg.filename.length ) {\n            $(\"#download_\"+scope.$id).attr(\"href\", \"/file/zip?name=\"+msg.name);\n            $(\"#download_\"+scope.$id).html(msg.name+\".zip\");\n        } else {\n            $(\"#download_\"+scope.$id).attr(\"\");\n            $(\"#download_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 680,
-        "y": 500,
+        "name": "P12 Passphrase",
+        "func": "function makeid(length) {\n    var result           = '';\n    var characters       = 'ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789';\n    var charactersLength = characters.length;\n    for ( var i = 0; i < length; i++ ) {\n      result += characters.charAt(Math.floor(Math.random() * \n charactersLength));\n   }\n   return result;\n}\n\nmsg.payload = makeid(12);\nmsg.passphrase = msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "193d0840bce5510e",
+                "e63548d6f49ae3e8"
+            ]
+        ]
+    },
+    {
+        "id": "193d0840bce5510e",
+        "type": "function",
+        "z": "02e5f353e21060b3",
+        "name": "Reuqest P12",
+        "func": "\nmsg.payload = {\n    filename: msg.certificate.filename,\n    passphrase: msg.passphrase\n}\n    \nmsg.request = msg.payload;\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 340,
+        "wires": [
+            [
+                "86c0a9fb5080c8e0"
+            ]
+        ]
+    },
+    {
+        "id": "86c0a9fb5080c8e0",
+        "type": "link call",
+        "z": "02e5f353e21060b3",
+        "name": "",
+        "links": [
+            "b4add4d73596ca1c"
+        ],
+        "timeout": "30",
+        "x": 850,
+        "y": 340,
+        "wires": [
+            [
+                "5d377c1dfd930c60"
+            ]
+        ]
+    },
+    {
+        "id": "1b80acb55cc9603a",
+        "type": "file",
+        "z": "02e5f353e21060b3",
+        "name": "",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 860,
+        "y": 280,
         "wires": [
             []
         ]
     },
     {
-        "id": "71b356cec81b3c9c",
-        "type": "comment",
+        "id": "e63548d6f49ae3e8",
+        "type": "function",
         "z": "02e5f353e21060b3",
-        "name": "Cert",
-        "info": "",
-        "x": 110,
-        "y": 340,
-        "wires": []
+        "name": "Description",
+        "func": "var P12_passphrase = msg.payload;\n\nmsg.payload = \"Certificate Type: \" + msg.certificate.type + \"\\r\\n\";\nmsg.payload += \"Common Name: \" + msg.certificate.cn + \"\\r\\n\";\nmsg.payload += \"Date: \" + new Date() + \"\\r\\n\";\nmsg.payload += \"Expiration: \" + new Date( new Date().getTime() + (msg.certificate.days * 24 * 3600 * 1000 )) + \"\\r\\n\";\nmsg.payload += \"P12 passphrase: \" + P12_passphrase + \"\\r\\n\";\n\n\nmsg.filename = \"/data/certificates/\" + msg.certificate.filename + \".txt\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 280,
+        "wires": [
+            [
+                "1b80acb55cc9603a"
+            ]
+        ]
     },
     {
-        "id": "4993e6d3e62445b2",
-        "type": "comment",
+        "id": "2711e8d6ffa2bb50",
+        "type": "ui_toast",
         "z": "02e5f353e21060b3",
-        "name": "Cert",
-        "info": "",
-        "x": 1190,
-        "y": 160,
-        "wires": []
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Close",
+        "cancel": "",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 430,
+        "y": 420,
+        "wires": [
+            [
+                "088935c97dffe71f"
+            ]
+        ]
     },
     {
-        "id": "2caba219fc589dc6",
-        "type": "comment",
+        "id": "5d377c1dfd930c60",
+        "type": "function",
         "z": "02e5f353e21060b3",
-        "name": "Reset",
-        "info": "",
-        "x": 440,
-        "y": 820,
-        "wires": []
+        "name": "",
+        "func": "msg.topic = \"Save certificate\";\nmsg.payload = '<a href=\"/file/zip?name=' + msg.certificate.filename +'\" style=\"color:Yellow\" target=\"_blank\">' + msg.certificate.filename + '.zip</a>';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 420,
+        "wires": [
+            [
+                "2711e8d6ffa2bb50"
+            ]
+        ]
     },
     {
-        "id": "63d7970471256555",
-        "type": "comment",
-        "z": "02e5f353e21060b3",
-        "name": "Reset",
-        "info": "",
-        "x": 130,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "101ba0830055c994",
-        "type": "comment",
-        "z": "02e5f353e21060b3",
-        "name": "Reset",
-        "info": "",
-        "x": 130,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "e85ba1c5076a5d6c",
+        "id": "028e9b211f73f2d6",
         "type": "debug",
         "z": "02e5f353e21060b3",
         "name": "",
@@ -2145,28 +1559,12 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1130,
-        "y": 720,
+        "x": 880,
+        "y": 500,
         "wires": []
     },
     {
-        "id": "4a826f42dca8da35",
-        "type": "debug",
-        "z": "02e5f353e21060b3",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 920,
-        "y": 720,
-        "wires": []
-    },
-    {
-        "id": "ac0b4e85ffcbdb83",
+        "id": "a5545c4b6f8e1dd0",
         "type": "debug",
         "z": "02e5f353e21060b3",
         "name": "",
@@ -2178,120 +1576,21 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1040,
-        "y": 640,
+        "y": 400,
         "wires": []
-    },
-    {
-        "id": "0c0acf8d36891371",
-        "type": "ui_template",
-        "z": "20e4ce8802f8b88f",
-        "group": "74775ab0c0866553",
-        "name": "Certificate PEM",
-        "order": 2,
-        "width": "13",
-        "height": "10",
-        "format": "<h3>Paste certificate PEM here</h3>\n<textarea id=\"certificatepem\" rows=\"30\" cols=\"80\" style=\"font-family:monospace\"></textarea>\n\n<script>\nthis.scope.action = function() {\n    console.log(\"Debug\");\n    return $(\"#certificatepem\").val();\n}\n</script>\n<md-button ng-click=\"send({payload:action()})\">\n    Inspect\n</md-button>\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 240,
-        "y": 120,
-        "wires": [
-            [
-                "d0fb1ecd2395c74a"
-            ]
-        ]
-    },
-    {
-        "id": "81ee617a56757f65",
-        "type": "link call",
-        "z": "20e4ce8802f8b88f",
-        "name": "",
-        "links": [
-            "ec974b559029a98a"
-        ],
-        "timeout": "30",
-        "x": 640,
-        "y": 120,
-        "wires": [
-            [
-                "1bc7c7e124f1e2f7"
-            ]
-        ]
-    },
-    {
-        "id": "d0fb1ecd2395c74a",
-        "type": "function",
-        "z": "20e4ce8802f8b88f",
-        "name": "pem",
-        "func": "msg.payload = {\n    pem: msg.payload\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 450,
-        "y": 120,
-        "wires": [
-            [
-                "81ee617a56757f65"
-            ]
-        ]
-    },
-    {
-        "id": "1bc7c7e124f1e2f7",
-        "type": "template",
-        "z": "20e4ce8802f8b88f",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "<pre>{{payload}}</pre>",
-        "output": "str",
-        "x": 830,
-        "y": 120,
-        "wires": [
-            [
-                "e6ecbd850ac21ecd"
-            ]
-        ]
-    },
-    {
-        "id": "e6ecbd850ac21ecd",
-        "type": "ui_toast",
-        "z": "20e4ce8802f8b88f",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": true,
-        "className": "",
-        "topic": "",
-        "name": "",
-        "x": 1030,
-        "y": 120,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "9e5ccfb2.19c098",
         "type": "file in",
         "z": "aa7daa87.f23d38",
-        "name": "ZIP cert",
+        "name": "",
         "filename": "",
         "format": "",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 620,
+        "x": 640,
         "y": 560,
         "wires": [
             [
@@ -2306,8 +1605,8 @@
         "name": "",
         "statusCode": "200",
         "headers": {},
-        "x": 1860,
-        "y": 560,
+        "x": 1040,
+        "y": 760,
         "wires": []
     },
     {
@@ -2321,8 +1620,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
-        "y": 560,
+        "x": 460,
+        "y": 600,
         "wires": [
             [
                 "be23ef2b.be374"
@@ -2333,18 +1632,18 @@
         "id": "be23ef2b.be374",
         "type": "file in",
         "z": "aa7daa87.f23d38",
-        "name": "ZIP key",
+        "name": "",
         "filename": "",
         "format": "",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 940,
-        "y": 560,
+        "x": 640,
+        "y": 600,
         "wires": [
             [
-                "27e0db35ce463430"
+                "01959333d3ac14b8"
             ]
         ]
     },
@@ -2359,8 +1658,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1390,
-        "y": 560,
+        "x": 450,
+        "y": 760,
         "wires": [
             [
                 "0ca9e5934ba74b82"
@@ -2378,8 +1677,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1700,
-        "y": 560,
+        "x": 860,
+        "y": 760,
         "wires": [
             [
                 "2f77af65.904188"
@@ -2395,266 +1694,11 @@
         "filename": "",
         "compressionlevel": 6,
         "outasstring": false,
-        "x": 1540,
-        "y": 560,
+        "x": 650,
+        "y": 760,
         "wires": [
             [
                 "996fbb93.cbfa2"
-            ]
-        ]
-    },
-    {
-        "id": "3e8832a0748b59b0",
-        "type": "http in",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "url": "/file/crt",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 190,
-        "y": 440,
-        "wires": [
-            [
-                "36340fec781bb33d"
-            ]
-        ]
-    },
-    {
-        "id": "759b707285db965b",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Headers",
-        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"application/octet-stream\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".crt\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 440,
-        "wires": [
-            [
-                "cfeb1eb533512ebb"
-            ]
-        ]
-    },
-    {
-        "id": "cfeb1eb533512ebb",
-        "type": "http response",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "statusCode": "200",
-        "headers": {},
-        "x": 1040,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "36340fec781bb33d",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Filename",
-        "func": "msg.name = msg.payload.name;\nmsg.filename = \"/data/certificates/\" + msg.name + \".crt\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 440,
-        "wires": [
-            [
-                "dca79403686a6a21"
-            ]
-        ]
-    },
-    {
-        "id": "dca79403686a6a21",
-        "type": "file in",
-        "z": "aa7daa87.f23d38",
-        "name": "Read certificate file",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 650,
-        "y": 440,
-        "wires": [
-            [
-                "759b707285db965b"
-            ]
-        ]
-    },
-    {
-        "id": "e1c85d15b5dc8629",
-        "type": "http in",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "url": "/file/key",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 190,
-        "y": 480,
-        "wires": [
-            [
-                "0e7cc9f705fe6035"
-            ]
-        ]
-    },
-    {
-        "id": "1c9e9f64276b1f62",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Headers",
-        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"application/octet-stream\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".key\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 480,
-        "wires": [
-            [
-                "75d830c7a5c70f9a"
-            ]
-        ]
-    },
-    {
-        "id": "75d830c7a5c70f9a",
-        "type": "http response",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "statusCode": "200",
-        "headers": {},
-        "x": 1040,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "0e7cc9f705fe6035",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Filename",
-        "func": "msg.name = msg.payload.name;\nmsg.filename = \"/data/certificates/\" + msg.name + \".key\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 480,
-        "wires": [
-            [
-                "837c7195b5257faf"
-            ]
-        ]
-    },
-    {
-        "id": "837c7195b5257faf",
-        "type": "file in",
-        "z": "aa7daa87.f23d38",
-        "name": "Read key file",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 630,
-        "y": 480,
-        "wires": [
-            [
-                "1c9e9f64276b1f62"
-            ]
-        ]
-    },
-    {
-        "id": "52e1bf49a1afac7a",
-        "type": "http in",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "url": "/file/p12",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 190,
-        "y": 520,
-        "wires": [
-            [
-                "d19a5937268b4502"
-            ]
-        ]
-    },
-    {
-        "id": "d191d898edcd7022",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Headers",
-        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"application/x-pkcs12\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".p12\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 520,
-        "wires": [
-            [
-                "543244359869a7a7"
-            ]
-        ]
-    },
-    {
-        "id": "543244359869a7a7",
-        "type": "http response",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "statusCode": "200",
-        "headers": {},
-        "x": 1040,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "d19a5937268b4502",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Filename",
-        "func": "msg.name = msg.payload.name;\nmsg.filename = \"/data/certificates/\" + msg.name + \".p12\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 520,
-        "wires": [
-            [
-                "b2970804b72572ee"
-            ]
-        ]
-    },
-    {
-        "id": "b2970804b72572ee",
-        "type": "file in",
-        "z": "aa7daa87.f23d38",
-        "name": "Read P12 file",
-        "filename": "",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "binary",
-        "allProps": false,
-        "x": 640,
-        "y": 520,
-        "wires": [
-            [
-                "d191d898edcd7022"
             ]
         ]
     },
@@ -2666,9 +1710,8 @@
         "scope": [
             "9e5ccfb2.19c098",
             "be23ef2b.be374",
-            "dca79403686a6a21",
-            "837c7195b5257faf",
-            "b2970804b72572ee",
+            "c5b63c69d3a30d19",
+            "e0a4701abd6ac1d5",
             "a8366702055cb8c6"
         ],
         "uncaught": false,
@@ -2716,85 +1759,6 @@
         "headers": {},
         "x": 1050,
         "y": 400,
-        "wires": []
-    },
-    {
-        "id": "e109bdba64f7e1c6",
-        "type": "http in",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "url": "/request",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 200,
-        "y": 180,
-        "wires": [
-            [
-                "30fc137e83729b8b"
-            ]
-        ]
-    },
-    {
-        "id": "0896376f0e0aabd0",
-        "type": "http response",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 850,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "b74da4e6608907ff",
-        "type": "link call",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "links": [
-            "48f79bb14d6fd4d2"
-        ],
-        "timeout": "30",
-        "x": 650,
-        "y": 180,
-        "wires": [
-            [
-                "0896376f0e0aabd0",
-                "47dc6265633db7d4"
-            ]
-        ]
-    },
-    {
-        "id": "30fc137e83729b8b",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "Validate",
-        "func": "\nif(!msg.payload.cn || msg.payload.cn.length < 6 ) {\n    msg.statusCode = \"400\"\n    msg.payload = {\n        message:\"Property cn is not set\"\n    }\n    node.send([null,msg]);\n    return;\n}\n\nif(!msg.payload.caPassphrase || msg.payload.caPassphrase.length < 6 ) {\n    msg.statusCode = \"500\"\n    msg.payload = {\n        message:\"Property caPassPhrase is not set\"\n    }\n    node.send([null,msg]);\n    return;\n}\n\nmsg.payload.type = msg.payload.type || \"server\"\n\nnode.send([msg,null]);\n",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 180,
-        "wires": [
-            [
-                "b74da4e6608907ff"
-            ],
-            [
-                "a5df559853b4719e"
-            ]
-        ]
-    },
-    {
-        "id": "a5df559853b4719e",
-        "type": "http response",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "statusCode": "400",
-        "headers": {},
-        "x": 620,
-        "y": 220,
         "wires": []
     },
     {
@@ -2917,14 +1881,14 @@
         "type": "function",
         "z": "aa7daa87.f23d38",
         "name": "CA file",
-        "func": "msg.zip.push({\n        filename: msg.name + \".key\",\n        payload: msg.payload\n});\n\nmsg.ca = global.get(\"certificates\")[0];\n\nmsg.filename = \"/data/certificates/\" + msg.ca.filename + \".crt\";\n\nreturn msg;",
+        "func": "msg.zip.push({\n    filename: msg.name + \".txt\",\n    payload: msg.payload\n});\n\nmsg.ca = global.get(\"certificates\")[0];\n\nmsg.filename = \"/data/certificates/\" + msg.ca.filename + \".crt\";\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1090,
-        "y": 560,
+        "x": 450,
+        "y": 720,
         "wires": [
             [
                 "a8366702055cb8c6"
@@ -2935,15 +1899,15 @@
         "id": "a8366702055cb8c6",
         "type": "file in",
         "z": "aa7daa87.f23d38",
-        "name": "ZIP CA",
+        "name": "",
         "filename": "",
         "format": "",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 1240,
-        "y": 560,
+        "x": 640,
+        "y": 720,
         "wires": [
             [
                 "1ae7f992.0fe28e"
@@ -2959,8 +1923,8 @@
         "method": "post",
         "upload": true,
         "swaggerDoc": "",
-        "x": 210,
-        "y": 780,
+        "x": 220,
+        "y": 980,
         "wires": [
             [
                 "c2ef2cd9a705dd7f"
@@ -2977,8 +1941,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 590,
-        "y": 780,
+        "x": 600,
+        "y": 980,
         "wires": [
             [
                 "efe3730d39452993"
@@ -2993,8 +1957,8 @@
         "name": "Response error",
         "statusCode": "",
         "headers": {},
-        "x": 860,
-        "y": 780,
+        "x": 870,
+        "y": 980,
         "wires": []
     },
     {
@@ -3007,174 +1971,13 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 390,
-        "y": 780,
+        "x": 400,
+        "y": 980,
         "wires": [
             [
                 "89ce88ad92aee23f"
             ]
         ]
-    },
-    {
-        "id": "d5c1d763bb6a4779",
-        "type": "http in",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "url": "/file",
-        "method": "delete",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 190,
-        "y": 660,
-        "wires": [
-            [
-                "817a70953f62c110"
-            ]
-        ]
-    },
-    {
-        "id": "817a70953f62c110",
-        "type": "function",
-        "z": "aa7daa87.f23d38",
-        "name": "CRT file",
-        "func": "msg.payload = \"/data/certificates/\" + msg.payload.filename + \".*\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 660,
-        "wires": [
-            [
-                "5b93ef7cfa1081b6"
-            ]
-        ]
-    },
-    {
-        "id": "5b93ef7cfa1081b6",
-        "type": "exec",
-        "z": "aa7daa87.f23d38",
-        "command": "rm",
-        "addpay": "payload",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 630,
-        "y": 660,
-        "wires": [
-            [],
-            [],
-            [
-                "46eeb76a827284b4"
-            ]
-        ]
-    },
-    {
-        "id": "46eeb76a827284b4",
-        "type": "switch",
-        "z": "aa7daa87.f23d38",
-        "name": "Error?",
-        "property": "payload.code",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "0",
-                "vt": "num"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 770,
-        "y": 660,
-        "wires": [
-            [
-                "0e1a0ff33704f8d6"
-            ],
-            [
-                "77d61f8e93d21ff9"
-            ]
-        ]
-    },
-    {
-        "id": "0e1a0ff33704f8d6",
-        "type": "change",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Could not remove certificates",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "statusCode",
-                "pt": "msg",
-                "to": "400",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 640,
-        "wires": [
-            [
-                "6b94e6e16c6d5be7"
-            ]
-        ]
-    },
-    {
-        "id": "77d61f8e93d21ff9",
-        "type": "change",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "OK",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 950,
-        "y": 680,
-        "wires": [
-            [
-                "6b94e6e16c6d5be7"
-            ]
-        ]
-    },
-    {
-        "id": "6b94e6e16c6d5be7",
-        "type": "http response",
-        "z": "aa7daa87.f23d38",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 1130,
-        "y": 660,
-        "wires": []
     },
     {
         "id": "47dc6265633db7d4",
@@ -3190,81 +1993,164 @@
         "wires": []
     },
     {
-        "id": "abe7b796a9d2fb83",
-        "type": "http in",
+        "id": "01959333d3ac14b8",
+        "type": "function",
         "z": "aa7daa87.f23d38",
-        "name": "",
-        "url": "/p12",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 180,
-        "y": 280,
+        "name": "P12",
+        "func": "msg.zip.push({\n        filename: msg.name + \".key\",\n        payload: msg.payload\n});\nmsg.filename = \"/data/certificates/\" + msg.name + \".p12\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 640,
         "wires": [
             [
-                "8975f7834d476b76"
+                "c5b63c69d3a30d19"
             ]
         ]
     },
     {
-        "id": "8975f7834d476b76",
+        "id": "c5b63c69d3a30d19",
+        "type": "file in",
+        "z": "aa7daa87.f23d38",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 640,
+        "y": 640,
+        "wires": [
+            [
+                "61342447e9787235"
+            ]
+        ]
+    },
+    {
+        "id": "61342447e9787235",
         "type": "function",
         "z": "aa7daa87.f23d38",
-        "name": "Validate",
-        "func": "\nif(!msg.payload.filename || msg.payload.filename.length < 6 ) {\n    msg.statusCode = \"400\"\n    msg.payload = {\n        message:\"Property filename is not set\"\n    }\n    node.send([null,msg]);\n    return;\n}\n\nif(!msg.payload.passphrase || msg.payload.passphrase.length < 6 ) {\n    msg.statusCode = \"400\"\n    msg.payload = {\n        message:\"Property passPhrase is not set\"\n    }\n    node.send([null,msg]);\n    return;\n}\n\nnode.send([msg,null]);\n",
-        "outputs": 2,
+        "name": "Passphrase",
+        "func": "msg.zip.push({\n        filename: msg.name + \".p12\",\n        payload: msg.payload\n});\nmsg.filename = \"/data/certificates/\" + msg.name + \".txt\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 680,
+        "wires": [
+            [
+                "e0a4701abd6ac1d5"
+            ]
+        ]
+    },
+    {
+        "id": "e0a4701abd6ac1d5",
+        "type": "file in",
+        "z": "aa7daa87.f23d38",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 640,
+        "y": 680,
+        "wires": [
+            [
+                "27e0db35ce463430"
+            ]
+        ]
+    },
+    {
+        "id": "3e8832a0748b59b0",
+        "type": "http in",
+        "z": "aa7daa87.f23d38",
+        "name": "",
+        "url": "/file/crt",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "36340fec781bb33d"
+            ]
+        ]
+    },
+    {
+        "id": "36340fec781bb33d",
+        "type": "function",
+        "z": "aa7daa87.f23d38",
+        "name": "Filename",
+        "func": "msg.name = msg.payload.name;\nmsg.filename = \"/data/certificates/\" + msg.name + \".crt\";\nreturn msg;",
+        "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 280,
+        "y": 200,
         "wires": [
             [
-                "3687426f616a7f8c"
-            ],
-            [
-                "299a129634a24a65"
+                "dca79403686a6a21"
             ]
         ]
     },
     {
-        "id": "3687426f616a7f8c",
-        "type": "link call",
+        "id": "dca79403686a6a21",
+        "type": "file in",
         "z": "aa7daa87.f23d38",
-        "name": "",
-        "links": [
-            "b4add4d73596ca1c"
-        ],
-        "timeout": "30",
-        "x": 620,
-        "y": 280,
+        "name": "Read certificate file",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 650,
+        "y": 200,
         "wires": [
             [
-                "61fe04ffc80fb8df"
+                "759b707285db965b"
             ]
         ]
     },
     {
-        "id": "299a129634a24a65",
-        "type": "http response",
+        "id": "759b707285db965b",
+        "type": "function",
         "z": "aa7daa87.f23d38",
-        "name": "",
-        "statusCode": "400",
-        "headers": {},
-        "x": 620,
-        "y": 320,
-        "wires": []
+        "name": "Headers",
+        "func": "msg.headers = {};\nmsg.headers['Content-Description'] = 'File Transfer';\nmsg.headers['Content-Transfer-Encoding'] = 'binary';\nmsg.headers[\"Content-Type\"] = \"application/octet-stream\",\nmsg.headers['Content-Disposition'] = \"attachment; filename=\" + msg.name + \".crt\";\nmsg.headers[\"Content-Length\"] = msg.payload.length;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 200,
+        "wires": [
+            [
+                "cfeb1eb533512ebb"
+            ]
+        ]
     },
     {
-        "id": "61fe04ffc80fb8df",
+        "id": "cfeb1eb533512ebb",
         "type": "http response",
         "z": "aa7daa87.f23d38",
         "name": "",
-        "statusCode": "",
+        "statusCode": "200",
         "headers": {},
-        "x": 812.566650390625,
-        "y": 281.566650390625,
+        "x": 1040,
+        "y": 200,
         "wires": []
     },
     {
