@@ -9,8 +9,8 @@ A Node-RED instance with projects enabled, preferably running in a docker contai
 ## Installation
 1. Create a Node-RED docker instance with project settings enabled
 2. From Node-RED projects, clone  
-```[git clone git@github.com:pandosme/privateCA.git](https://github.com/pandosme/privateCA.git)```  
-3. You may need to manually install ```node-red-contrib-zip```.  
+```https://github.com/pandosme/privateCA.git```  
+3. You may need to manually install ```node-red-contrib-zip```.  Go to Manage 
 4. On tab "CA initialize", double click to edit "Set CA settings here".
 5. Click Deploy
 6. Click the inject node "Initialize CA".
