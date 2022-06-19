@@ -10,18 +10,21 @@ A Linux computer (Rasberry PI will do) with the following installed
 - Docker-compose
 - Git
 
+
 ## Installation
-1. In your home directory
-1. ```git clone git@github.com:pandosme/privateCA.git```
-2. ```cd privateCA```
-3. ```npm install```
-3. ```nano docker-compose.yaml``` if you need to change the default port 8443 or change timezone.
-4. ```docker-compose up -d```
-5. Open Browser and goto http://address:8443
-6. On tab "CA initialize", double click to edit "Set CA settings here".
-7. Click Deploy
-8. Click the inject node "Initialize CA".
-9. Open Browser and goto http://address:8443/ui.  
+1. Create a Node-RED docker instance with project settings enabled
+2. Fomr Node-RED projects, clone 
+3. In your home directory
+4. ```git clone git@github.com:pandosme/privateCA.git```
+5. ```cd privateCA```
+6. ```npm install```
+7. ```nano docker-compose.yaml``` if you need to change the default port 8443 or change timezone.
+8. ```docker-compose up -d```
+9. Open Browser and goto http://address:8443
+10. On tab "CA initialize", double click to edit "Set CA settings here".
+11. Click Deploy
+12. Click the inject node "Initialize CA".
+13. Open Browser and goto http://address:8443/ui.  
 You should be good to go...
 
 For browsers to trust the signed server certitificate they must install the CA certificate.  Each client needs to download the CA certificate and install it as a trusted CA. In Windows, Chrome and Edge us the system certificate store (double-click the downloaded CA certificate).   Firefox requires to install it in the browsers certificate store under menu "Settings".  The browser needs to be restarted after the CA certificate is installed. 
