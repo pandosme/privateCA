@@ -767,7 +767,7 @@
         "order": 4,
         "width": "13",
         "height": "10",
-        "format": "<h3>Paste certificate PEM here</h3>\n<textarea id=\"csrpem\" rows=\"30\" cols=\"80\" style=\"font-family:monospace\">{{msg.payload}}</textarea>\n\n<script>\nthis.scope.action = function() {\n    var csr = $(\"#csrpem\").val();\n    $(\"#csrpem\").val(\"\");\n    return csr;\n}\n</script>\n<md-button ng-click=\"send({payload:action()})\">\n    Sign certificate\n</md-button>\n",
+        "format": "<h3>Paste CSR PEM here</h3>\n<textarea id=\"csrpem\" rows=\"30\" cols=\"80\" style=\"font-family:monospace\">{{msg.payload}}</textarea>\n\n<script>\nthis.scope.action = function() {\n    var csr = $(\"#csrpem\").val();\n    $(\"#csrpem\").val(\"\");\n    return csr;\n}\n</script>\n<md-button ng-click=\"send({payload:action()})\">\n    Sign certificate\n</md-button>\n",
         "storeOutMessages": true,
         "fwdInMessages": false,
         "resendOnRefresh": true,
@@ -921,8 +921,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1230,
-        "y": 140,
+        "x": 1130,
+        "y": 160,
         "wires": [
             []
         ]
@@ -936,8 +936,8 @@
             "5005447c7403dfdd"
         ],
         "timeout": "30",
-        "x": 880,
-        "y": 240,
+        "x": 1130,
+        "y": 200,
         "wires": [
             [
                 "100afe83d81393b8"
@@ -984,8 +984,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1100,
-        "y": 240,
+        "x": 1350,
+        "y": 200,
         "wires": [
             [
                 "279b1d75e74921bf"
@@ -1007,8 +1007,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1330,
-        "y": 240,
+        "x": 1580,
+        "y": 200,
         "wires": [
             [
                 "0462932fed3354b0",
@@ -1027,8 +1027,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1560,
-        "y": 240,
+        "x": 1810,
+        "y": 200,
         "wires": [
             [
                 "5431e0211c1e5b7b"
@@ -1047,8 +1047,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 1730,
-        "y": 240,
+        "x": 1980,
+        "y": 200,
         "wires": [
             [],
             [],
@@ -1080,8 +1080,8 @@
         "links": [
             "75aeed0c3791dc46"
         ],
-        "x": 1515,
-        "y": 280,
+        "x": 1765,
+        "y": 240,
         "wires": []
     },
     {
