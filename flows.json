@@ -182,26 +182,6 @@
         "className": ""
     },
     {
-        "id": "cefd5b5f.924ec",
-        "type": "ui_group",
-        "name": "Dropzone inspect",
-        "tab": "b39f2f66.e3c7",
-        "order": 1,
-        "disp": false,
-        "width": "4",
-        "collapse": false
-    },
-    {
-        "id": "5781adce.06a5d4",
-        "type": "ui_group",
-        "name": "Certificate info",
-        "tab": "b39f2f66.e3c7",
-        "order": 2,
-        "disp": true,
-        "width": "16",
-        "collapse": false
-    },
-    {
         "id": "788715bd.13bec4",
         "type": "ui_group",
         "name": "Certificate Signing Request",
@@ -568,9 +548,9 @@
         "id": "1d73b4e8dcaf33b1",
         "type": "comment",
         "z": "b8bbfb03.fd1c08",
-        "name": "Initialize CA will remove any previous CA and certificates",
+        "name": "Initialize CA will remove any previous CA and certificates.  All previous data will be lost.",
         "info": "",
-        "x": 330,
+        "x": 430,
         "y": 60,
         "wires": []
     },
@@ -1778,7 +1758,7 @@
         "order": 9,
         "width": "6",
         "height": "1",
-        "format": "<h3><a id=\"{{'download_p12_'+$id}}\" href=\"\" style=\"color:white\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.payload && msg.payload.filename && msg.payload.filename.length ) {\n            $(\"#download_p12_\"+scope.$id).attr(\"href\", \"/file/p12?name=\"+msg.payload.filename);\n            $(\"#download_p12_\"+scope.$id).html(msg.payload.filename+\".p12\");\n        } else {\n            $(\"#download_p12_\"+scope.$id).attr(\"\");\n            $(\"#download_p12_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
+        "format": "<h3><a id=\"{{'download_p12_'+$id}}\" href=\"\" style=\"color:white\" target=\"_blank\"></a></h3>\n\n<script>\n(function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n        if( msg.payload && msg.payload.p12 && msg.payload.p12.length ) {\n            $(\"#download_p12_\"+scope.$id).attr(\"href\", \"/file/p12?name=\"+msg.payload.p12);\n            $(\"#download_p12_\"+scope.$id).html(msg.payload.p12+\".p12\");\n        } else {\n            $(\"#download_p12_\"+scope.$id).attr(\"\");\n            $(\"#download_p12_\"+scope.$id).html(\"\");\n        }\n    }\n  });\n})(scope);\n</script>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -1803,7 +1783,8 @@
         "y": 640,
         "wires": [
             [
-                "b32c4c64a5136aa7"
+                "b32c4c64a5136aa7",
+                "4a826f42dca8da35"
             ]
         ]
     },
@@ -1828,9 +1809,12 @@
         "x": 850,
         "y": 640,
         "wires": [
-            [],
             [
-                "c54132d911835ba1"
+                "ac0b4e85ffcbdb83"
+            ],
+            [
+                "c54132d911835ba1",
+                "e85ba1c5076a5d6c"
             ]
         ]
     },
@@ -2147,6 +2131,54 @@
         "info": "",
         "x": 130,
         "y": 680,
+        "wires": []
+    },
+    {
+        "id": "e85ba1c5076a5d6c",
+        "type": "debug",
+        "z": "02e5f353e21060b3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1130,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "4a826f42dca8da35",
+        "type": "debug",
+        "z": "02e5f353e21060b3",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "ac0b4e85ffcbdb83",
+        "type": "debug",
+        "z": "02e5f353e21060b3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 640,
         "wires": []
     },
     {
@@ -3247,7 +3279,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 880,
+        "y": 980,
         "wires": [
             [
                 "cd8ea9d5518f8889"
@@ -3267,7 +3299,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 880,
+        "y": 980,
         "wires": [
             [],
             [],
@@ -3288,7 +3320,7 @@
         "finalize": "",
         "libs": [],
         "x": 750,
-        "y": 880,
+        "y": 980,
         "wires": [
             [
                 "c3908da10afd7a29"
@@ -3316,7 +3348,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 880,
+        "y": 980,
         "wires": [
             [
                 "04a569193e606443"
@@ -3353,7 +3385,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 880,
+        "y": 980,
         "wires": [
             [
                 "282d0dd7cd4d02f0"
@@ -3372,7 +3404,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 940,
+        "y": 1040,
         "wires": [
             [],
             [],
@@ -3393,7 +3425,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 940,
+        "y": 1040,
         "wires": [
             [
                 "ec3e94f7e1f9ce45"
@@ -3421,7 +3453,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 940,
+        "y": 1040,
         "wires": [
             [
                 "6aebe08561872b3d"
@@ -3458,7 +3490,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 940,
+        "y": 1040,
         "wires": [
             [
                 "282d0dd7cd4d02f0"
@@ -3477,7 +3509,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 1000,
+        "y": 1100,
         "wires": [
             [
                 "95c0ca331b9cc36a"
@@ -3496,7 +3528,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 1000,
+        "y": 1100,
         "wires": [
             [],
             [],
@@ -3526,7 +3558,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 1000,
+        "y": 1100,
         "wires": [
             [
                 "b4f5d60f2e0c5855"
@@ -3563,7 +3595,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 1000,
+        "y": 1100,
         "wires": [
             [
                 "282d0dd7cd4d02f0"
@@ -3582,7 +3614,7 @@
         "finalize": "",
         "libs": [],
         "x": 1290,
-        "y": 1060,
+        "y": 1160,
         "wires": [
             [
                 "282d0dd7cd4d02f0",
@@ -3597,7 +3629,7 @@
         "name": "Request Certificate",
         "links": [],
         "x": 345,
-        "y": 880,
+        "y": 980,
         "wires": [
             [
                 "861f223fa69f58f6"
@@ -3612,7 +3644,7 @@
         "mode": "return",
         "links": [],
         "x": 1455,
-        "y": 880,
+        "y": 980,
         "wires": []
     },
     {
@@ -3622,7 +3654,7 @@
         "name": "Request Certificate",
         "info": "",
         "x": 230,
-        "y": 880,
+        "y": 980,
         "wires": []
     },
     {
@@ -3637,7 +3669,7 @@
         "finalize": "",
         "libs": [],
         "x": 750,
-        "y": 420,
+        "y": 520,
         "wires": [
             [
                 "fc5a798a38a2c92b"
@@ -3657,7 +3689,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 420,
+        "y": 520,
         "wires": [
             [],
             [],
@@ -3678,7 +3710,7 @@
         "finalize": "",
         "libs": [],
         "x": 750,
-        "y": 480,
+        "y": 580,
         "wires": [
             [
                 "4db22bfc992016f1"
@@ -3697,7 +3729,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 480,
+        "y": 580,
         "wires": [
             [],
             [],
@@ -3718,7 +3750,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 540,
+        "y": 640,
         "wires": [
             [
                 "ced2291e22d88f33"
@@ -3738,7 +3770,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 540,
+        "y": 640,
         "wires": [
             [],
             [],
@@ -3906,7 +3938,7 @@
         "syntax": "mustache",
         "template": "01",
         "output": "str",
-        "x": 520,
+        "x": 530,
         "y": 260,
         "wires": [
             [
@@ -3929,90 +3961,6 @@
         "wires": [
             [
                 "2188b8e1a43f2b79"
-            ]
-        ]
-    },
-    {
-        "id": "7a99c63a11691046",
-        "type": "fs-ops-mkdir",
-        "z": "e325035d97b5ddfc",
-        "name": "/openssl",
-        "path": "/data",
-        "pathType": "str",
-        "dirname": "openssl",
-        "dirnameType": "str",
-        "recursive": false,
-        "mode": "777",
-        "fullpath": "directory",
-        "fullpathType": "msg",
-        "x": 780,
-        "y": 80,
-        "wires": [
-            [
-                "02390b45917257fb"
-            ]
-        ]
-    },
-    {
-        "id": "02390b45917257fb",
-        "type": "fs-ops-mkdir",
-        "z": "e325035d97b5ddfc",
-        "name": "/openssl/crl",
-        "path": "/data/openssl",
-        "pathType": "str",
-        "dirname": "crl",
-        "dirnameType": "str",
-        "recursive": false,
-        "mode": "777",
-        "fullpath": "directory",
-        "fullpathType": "msg",
-        "x": 950,
-        "y": 80,
-        "wires": [
-            [
-                "1041647ffd696fc5"
-            ]
-        ]
-    },
-    {
-        "id": "1041647ffd696fc5",
-        "type": "fs-ops-mkdir",
-        "z": "e325035d97b5ddfc",
-        "name": "/openssl/newcerts",
-        "path": "/data/openssl",
-        "pathType": "str",
-        "dirname": "newcerts",
-        "dirnameType": "str",
-        "recursive": false,
-        "mode": "777",
-        "fullpath": "directory",
-        "fullpathType": "msg",
-        "x": 1150,
-        "y": 80,
-        "wires": [
-            [
-                "20e61bb27c2c8476"
-            ]
-        ]
-    },
-    {
-        "id": "20e61bb27c2c8476",
-        "type": "fs-ops-mkdir",
-        "z": "e325035d97b5ddfc",
-        "name": "/openssl/certs",
-        "path": "/data/openssl",
-        "pathType": "str",
-        "dirname": "certs",
-        "dirnameType": "str",
-        "recursive": false,
-        "mode": "777",
-        "fullpath": "directory",
-        "fullpathType": "msg",
-        "x": 1360,
-        "y": 80,
-        "wires": [
-            [
-                "5d8dcb657b4b0f47"
             ]
         ]
     },
@@ -4069,7 +4017,7 @@
             [],
             [],
             [
-                "7a99c63a11691046"
+                "c322c702a57bab5c"
             ]
         ]
     },
@@ -4080,7 +4028,7 @@
         "name": "Generate CA certificate",
         "links": [],
         "x": 375,
-        "y": 420,
+        "y": 520,
         "wires": [
             [
                 "866954f7be0a9abd"
@@ -4094,7 +4042,7 @@
         "name": "Generate CA certificate",
         "info": "",
         "x": 240,
-        "y": 420,
+        "y": 520,
         "wires": []
     },
     {
@@ -4118,7 +4066,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 420,
+        "y": 520,
         "wires": [
             [
                 "419cd7ee216e59c2"
@@ -4136,7 +4084,7 @@
         "mode": "return",
         "links": [],
         "x": 1455,
-        "y": 420,
+        "y": 520,
         "wires": []
     },
     {
@@ -4151,7 +4099,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 420,
+        "y": 520,
         "wires": [
             [
                 "9c37253fadb963bb"
@@ -4179,7 +4127,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 480,
+        "y": 580,
         "wires": [
             [
                 "419cd7ee216e59c2"
@@ -4210,7 +4158,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 540,
+        "y": 640,
         "wires": [
             [
                 "419cd7ee216e59c2"
@@ -4232,7 +4180,7 @@
         "finalize": "",
         "libs": [],
         "x": 1290,
-        "y": 540,
+        "y": 640,
         "wires": [
             [
                 "419cd7ee216e59c2",
@@ -4280,7 +4228,7 @@
         "finalize": "",
         "libs": [],
         "x": 700,
-        "y": 1180,
+        "y": 1280,
         "wires": [
             [
                 "364e9d6c8b876a3c"
@@ -4299,7 +4247,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 1180,
+        "y": 1280,
         "wires": [
             [],
             [],
@@ -4315,7 +4263,7 @@
         "name": "Make P12",
         "links": [],
         "x": 275,
-        "y": 1180,
+        "y": 1280,
         "wires": [
             [
                 "e3434c11d0793ba5"
@@ -4334,7 +4282,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 1180,
+        "y": 1280,
         "wires": [
             [
                 "6d574372ff9a2320"
@@ -4362,7 +4310,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 1180,
+        "y": 1280,
         "wires": [
             [
                 "bc86c6db0187f0a2"
@@ -4399,7 +4347,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 1180,
+        "y": 1280,
         "wires": [
             [
                 "dfe089911cdfd4a3"
@@ -4418,7 +4366,7 @@
         "finalize": "",
         "libs": [],
         "x": 1290,
-        "y": 1220,
+        "y": 1320,
         "wires": [
             [
                 "dfe089911cdfd4a3"
@@ -4433,7 +4381,7 @@
         "mode": "return",
         "links": [],
         "x": 1455,
-        "y": 1180,
+        "y": 1280,
         "wires": []
     },
     {
@@ -4443,7 +4391,7 @@
         "name": "Make P12",
         "info": "",
         "x": 200,
-        "y": 1180,
+        "y": 1280,
         "wires": []
     },
     {
@@ -4458,7 +4406,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 760,
+        "y": 860,
         "wires": [
             [],
             [],
@@ -4479,7 +4427,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 760,
+        "y": 860,
         "wires": [
             [
                 "4a159433f40275e4"
@@ -4493,7 +4441,7 @@
         "name": "Sign CSR",
         "links": [],
         "x": 275,
-        "y": 700,
+        "y": 800,
         "wires": [
             [
                 "d7bac37872c07b6c"
@@ -4512,7 +4460,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 700,
+        "y": 800,
         "wires": [
             [
                 "2d3ab85752dc7309"
@@ -4540,7 +4488,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 760,
+        "y": 860,
         "wires": [
             [
                 "4ad62f5fd0a0b14b"
@@ -4577,7 +4525,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 760,
+        "y": 860,
         "wires": [
             [
                 "851725574801d398"
@@ -4596,7 +4544,7 @@
         "finalize": "",
         "libs": [],
         "x": 1290,
-        "y": 800,
+        "y": 900,
         "wires": [
             [
                 "851725574801d398",
@@ -4612,7 +4560,7 @@
         "mode": "return",
         "links": [],
         "x": 1585,
-        "y": 760,
+        "y": 860,
         "wires": []
     },
     {
@@ -4622,7 +4570,7 @@
         "name": "Sign CSR",
         "info": "",
         "x": 200,
-        "y": 700,
+        "y": 800,
         "wires": []
     },
     {
@@ -4637,7 +4585,7 @@
         "finalize": "",
         "libs": [],
         "x": 710,
-        "y": 700,
+        "y": 800,
         "wires": [
             [
                 "e5b97223f0030ea2"
@@ -4655,7 +4603,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 960,
-        "y": 700,
+        "y": 800,
         "wires": [
             [
                 "aef7c67c7665380d"
@@ -4682,7 +4630,7 @@
         "to": "",
         "reg": false,
         "x": 1500,
-        "y": 540,
+        "y": 640,
         "wires": [
             [
                 "5b3ff8598b1b8c62"
@@ -4698,7 +4646,7 @@
         "action": "str",
         "pretty": true,
         "x": 1670,
-        "y": 540,
+        "y": 640,
         "wires": [
             [
                 "578e8feaf16e6c50"
@@ -4716,7 +4664,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 1920,
-        "y": 540,
+        "y": 640,
         "wires": [
             []
         ]
@@ -4733,7 +4681,7 @@
         "finalize": "",
         "libs": [],
         "x": 1490,
-        "y": 480,
+        "y": 580,
         "wires": [
             [
                 "9247ef2488d4ef4b"
@@ -4753,7 +4701,7 @@
         "oldrc": false,
         "name": "",
         "x": 1670,
-        "y": 480,
+        "y": 580,
         "wires": [
             [],
             [],
@@ -4780,7 +4728,7 @@
         "to": "",
         "reg": false,
         "x": 1740,
-        "y": 800,
+        "y": 900,
         "wires": [
             [
                 "6b76a5a9229ffe06"
@@ -4796,7 +4744,7 @@
         "action": "str",
         "pretty": true,
         "x": 1910,
-        "y": 800,
+        "y": 900,
         "wires": [
             [
                 "8a6a37969daaf9c0"
@@ -4814,7 +4762,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 2140,
-        "y": 800,
+        "y": 900,
         "wires": [
             []
         ]
@@ -4839,7 +4787,7 @@
         "to": "",
         "reg": false,
         "x": 1520,
-        "y": 1060,
+        "y": 1160,
         "wires": [
             [
                 "d259e847d2774f22"
@@ -4855,7 +4803,7 @@
         "action": "str",
         "pretty": true,
         "x": 1690,
-        "y": 1060,
+        "y": 1160,
         "wires": [
             [
                 "c944cdfa09fe1c15"
@@ -4873,7 +4821,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 1920,
-        "y": 1060,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -4890,7 +4838,7 @@
         "finalize": "",
         "libs": [],
         "x": 730,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "f3deae11855b12e1"
@@ -4910,7 +4858,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [],
             [],
@@ -4931,7 +4879,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "dc570bb213923dd5"
@@ -4945,7 +4893,7 @@
         "name": "Revoke",
         "links": [],
         "x": 265,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "c7c6dbb11811e057"
@@ -4959,7 +4907,7 @@
         "name": "Revoke",
         "info": "",
         "x": 190,
-        "y": 1280,
+        "y": 1380,
         "wires": []
     },
     {
@@ -4983,7 +4931,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1110,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "f3cb1f6b92ab3618"
@@ -5020,7 +4968,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "653de9c40ce6e7c0"
@@ -5039,7 +4987,7 @@
         "finalize": "",
         "libs": [],
         "x": 1290,
-        "y": 1320,
+        "y": 1420,
         "wires": [
             [
                 "653de9c40ce6e7c0"
@@ -5054,7 +5002,7 @@
         "mode": "return",
         "links": [],
         "x": 1455,
-        "y": 1280,
+        "y": 1380,
         "wires": []
     },
     {
@@ -5068,7 +5016,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 660,
-        "y": 1400,
+        "y": 1500,
         "wires": [
             [
                 "9fb337ecbe1bac45"
@@ -5087,7 +5035,7 @@
         "finalize": "",
         "libs": [],
         "x": 810,
-        "y": 1400,
+        "y": 1500,
         "wires": [
             [
                 "78b7b0508b3feff9"
@@ -5106,7 +5054,7 @@
         "oldrc": false,
         "name": "",
         "x": 960,
-        "y": 1400,
+        "y": 1500,
         "wires": [
             [
                 "a409b78b97c24c87"
@@ -5127,7 +5075,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 1400,
+        "y": 1500,
         "wires": [
             [
                 "1d23440c0b87816c"
@@ -5141,7 +5089,7 @@
         "name": "Inspect",
         "links": [],
         "x": 265,
-        "y": 1400,
+        "y": 1500,
         "wires": [
             [
                 "abb49ed77ccb7ba3"
@@ -5155,7 +5103,7 @@
         "name": "Inspect",
         "info": "",
         "x": 190,
-        "y": 1400,
+        "y": 1500,
         "wires": []
     },
     {
@@ -5170,7 +5118,7 @@
         "finalize": "",
         "libs": [],
         "x": 1290,
-        "y": 1400,
+        "y": 1500,
         "wires": [
             [
                 "5eeac357d1536fc3"
@@ -5185,7 +5133,98 @@
         "mode": "return",
         "links": [],
         "x": 1455,
-        "y": 1400,
+        "y": 1500,
         "wires": []
+    },
+    {
+        "id": "c322c702a57bab5c",
+        "type": "template",
+        "z": "e325035d97b5ddfc",
+        "name": "README",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "# privateCA\nThese directories and files were generated by Node-RED application privateCA.\n",
+        "output": "str",
+        "x": 760,
+        "y": 80,
+        "wires": [
+            [
+                "3f8ccec43521cda7"
+            ]
+        ]
+    },
+    {
+        "id": "3f8ccec43521cda7",
+        "type": "file",
+        "z": "e325035d97b5ddfc",
+        "name": "",
+        "filename": "/data/openssl/README.md",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1000,
+        "y": 80,
+        "wires": [
+            [
+                "0b4392b8e5857410"
+            ]
+        ]
+    },
+    {
+        "id": "0b4392b8e5857410",
+        "type": "file",
+        "z": "e325035d97b5ddfc",
+        "name": "",
+        "filename": "/data/openssl/crl/README.md",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1290,
+        "y": 80,
+        "wires": [
+            [
+                "1b8d42a049b377ec"
+            ]
+        ]
+    },
+    {
+        "id": "1b8d42a049b377ec",
+        "type": "file",
+        "z": "e325035d97b5ddfc",
+        "name": "",
+        "filename": "/data/openssl/newcerts/README.md",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1610,
+        "y": 80,
+        "wires": [
+            [
+                "7fbc6e21c9808802"
+            ]
+        ]
+    },
+    {
+        "id": "7fbc6e21c9808802",
+        "type": "file",
+        "z": "e325035d97b5ddfc",
+        "name": "",
+        "filename": "/data/openssl/certs/README.md",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1960,
+        "y": 80,
+        "wires": [
+            [
+                "5d8dcb657b4b0f47"
+            ]
+        ]
     }
 ]
