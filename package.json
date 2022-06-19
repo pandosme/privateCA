@@ -1,10 +1,9 @@
 {
     "name": "privateCA",
     "description": "Node-RED CA server wrapper around OpenSSL",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "private": true,
     "dependencies": {
-        "node-red-contrib-fs-ops": "~1.6.0",
         "node-red-contrib-zip": "~1.1.0",
         "node-red-dashboard": "~3.1.7",
         "node-red-node-ui-table": "~0.3.11"
