@@ -7,7 +7,7 @@ The purpose for privateCA is to provide a CA for educational and demonstration p
 A Node-RED instance with projects enabled, preferably running in a docker container.
 
 ## Installation
-1. Create a Node-RED docker instance with project settings enabled
+1. Create a Node-RED docker instance with project settings enabled (edit .node-red/settings.js) and start Node-RED.
 2. From Node-RED projects, clone  
 ```https://github.com/pandosme/privateCA.git```  
 3. You may need to manually install ```node-red-contrib-zip```.  Go to Manage 
