@@ -11,7 +11,7 @@ A PC with Docker and Git installed
 ```git clone https://github.com/pandosme/privateCA.git```
 2. ```cd privateCA```
 3. ```npm install```
-4. ```docker compose up -d"
+4. ```docker compose up -d```
 5. Use browser and go to http://[IP]:8433
 5. On tab "CA initialize", double click to edit "Set CA settings here".
 6. Click Deploy
