@@ -5,8 +5,8 @@
     "private": true,
     "dependencies": {
         "node-red-contrib-zip": "~1.1.0",
-        "node-red-dashboard": "~3.1.7",
-        "node-red-node-ui-table": "~0.3.11"
+        "node-red-dashboard": "~3.6.2",
+        "node-red-node-ui-table": "~0.4.3"
     },
     "node-red": {
         "settings": {
