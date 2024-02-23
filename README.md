@@ -4,13 +4,13 @@ A CA (Certificate Authority) built around OpenSSL with a Node-Red wrapper interf
 The purpose for privateCA is to provide a CA for educational and demonstration purposes.  You may run it in a less critical production system if you take additional hardening precautions such as reduced exposure, adding authentication to Node-RED and use a strong passphrase for the CA.  After initializing the CA certificate and private key, the server provides a dashboard and API for signing CSR and requesting certificates (server or client) with private key or as P12.
 
 ## Prerequisite 
-A Node-RED instance with projects enabled, preferably running in a docker container.
+A PC with Docker and Git installed
 
 ## Installation
-1. Create a Node-RED docker instance with project settings enabled (edit .node-red/settings.js) and start Node-RED.
-2. From Node-RED projects, clone  
-```https://github.com/pandosme/privateCA.git```  
-3. You may need to manually install ```node-red-contrib-zip```.  Go to Manage 
+1. Clone reposiroty
+```git clone https://github.com/pandosme/privateCA.git```
+2. ```cd privateCA```
+3. ```npm install```
 4. On tab "CA initialize", double click to edit "Set CA settings here".
 5. Click Deploy
 6. Click the inject node "Initialize CA".
